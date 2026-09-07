@@ -1,0 +1,9863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#ff4b23">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>Meeru Fast Food</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:#f7f7f7;
+  color:#222;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+h1,h2,h3,h4,h5,h6,
+button,
+input{
+  font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+
+.brand-name{
+  font-weight:800;
+  letter-spacing:-.4px;
+}
+
+.tagline{
+  font-weight:500;
+  letter-spacing:.1px;
+}
+
+.nav-button{
+  font-weight:600;
+  letter-spacing:-.1px;
+}
+
+.hero-copy h1{
+  font-weight:900;
+  letter-spacing:-2.5px;
+}
+
+.hero-copy p{
+  font-weight:400;
+}
+
+.hero-kicker{
+  font-weight:800;
+  letter-spacing:.7px;
+}
+
+.hero-cta,
+.home-menu-cta,
+.add-button,
+.order-button,
+.login-button{
+  font-weight:700;
+  letter-spacing:-.1px;
+}
+
+.section-heading h1{
+  font-weight:800;
+  letter-spacing:-1px;
+}
+
+.product-name{
+  font-weight:700;
+  letter-spacing:-.3px;
+}
+
+.product-price{
+  font-weight:800;
+}
+
+.detail-info h1{
+  font-weight:800;
+  letter-spacing:-1.2px;
+}
+
+.detail-price{
+  font-weight:800;
+}
+
+.cart-title h2{
+  font-weight:700;
+}
+
+.cart-total{
+  font-weight:800;
+}
+
+.order-id{
+  font-weight:700;
+}
+
+.order-total{
+  font-weight:800;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+
+button:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+
+.hidden{
+  display:none!important;
+}
+
+:root{
+  --p:#ff4b23;
+  --pd:#e63e19;
+  --dark:#171717;
+  --muted:#777;
+  --line:#ececec;
+  --shadow:0 10px 35px rgba(0,0,0,.08);
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(255,75,35,.97);
+  color:#fff;
+  backdrop-filter:blur(12px);
+  box-shadow:0 3px 18px rgba(0,0,0,.12);
+}
+
+.header-content{
+  max-width:1240px;
+  margin:auto;
+  min-height:70px;
+  padding:10px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+  cursor:pointer;
+}
+
+.brand-logo{
+  width:46px;
+  height:46px;
+  border-radius:12px;
+  object-fit:cover;
+  display:block;
+  flex:none;
+  background:#ffffff;
+  box-shadow:0 2px 8px rgba(0,0,0,.18);
+}
+
+.brand-name{
+  font-size:23px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.tagline{
+  font-size:11px;
+  margin-top:2px;
+  opacity:.9;
+}
+
+.header-nav{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+
+.nav-button{
+  border:0;
+  background:rgba(255,255,255,.14);
+  color:#fff;
+  padding:10px 12px;
+  border-radius:11px;
+  font-weight:600;
+  white-space:nowrap;
+}
+
+.nav-button:hover,
+.nav-button.active{
+  background:#fff;
+  color:var(--p);
+}
+
+.user-name{
+  font-weight:700;
+  max-width:125px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.menu-button{
+  display:none;
+  border:0;
+  background:rgba(255,255,255,.18);
+  color:#fff;
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  font-size:22px;
+}
+
+.mobile-menu{
+  display:none;
+  background:#fff;
+  color:#222;
+  border-top:1px solid #ddd;
+  padding:8px 14px 14px;
+}
+
+.mobile-menu.open{
+  display:block;
+}
+
+.mobile-menu button{
+  width:100%;
+  border:0;
+  background:#fff;
+  text-align:left;
+  padding:14px 10px;
+  border-radius:10px;
+}
+
+.mobile-menu button:hover{
+  background:#f7f7f7;
+}
+
+
+/* =========================
+   AUTH - FOOD DELIVERY
+========================= */
+
+#authArea{
+  position:relative;
+  width:100%;
+  min-height:100dvh;
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(20,20,20,.72),
+      rgba(20,20,20,.42)
+    ),
+    url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOMdQBhN9yZm-TrlAyFm5TrIWK76Hf5tkPxq0Mi6Wy0sW6K8hy-m1ksk8&s=10")
+    center/cover no-repeat;
+}
+
+#authArea::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.18);
+  pointer-events:none;
+}
+
+
+/* =========================
+   AUTH WRAPPER
+   FIXED FOR DESKTOP
+========================= */
+
+.auth-wrap{
+  position:relative;
+  z-index:2;
+
+  width:100%;
+  min-height:100dvh;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  /*
+    Small vertical padding so the complete
+    login/register area fits inside viewport.
+  */
+  padding:18px 16px;
+}
+
+
+/* =========================
+   AUTH BRAND
+========================= */
+
+.auth-brand{
+  color:#fff;
+  text-align:center;
+
+  margin-bottom:18px;
+
+  text-shadow:0 3px 15px rgba(0,0,0,.45);
+
+  flex-shrink:0;
+}
+
+.auth-brand h1{
+  font-size:34px;
+  font-weight:900;
+  letter-spacing:-1.2px;
+  margin:0;
+}
+
+.auth-brand p{
+  margin:5px 0 0;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.88);
+}
+
+
+/* =========================
+   AUTH LOGO
+========================= */
+
+.auth-logo{
+  width:88px;
+  height:88px;
+
+  object-fit:cover;
+  display:block;
+
+  margin:0 auto 8px;
+
+  border-radius:15px;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.25);
+}
+
+
+/* =========================
+   LOGIN / REGISTER CARD
+========================= */
+
+.login-section{
+  position:relative;
+
+  width:min(430px,100%);
+
+  padding:25px 28px;
+
+  background:rgba(255,255,255,.97);
+
+  border:1px solid rgba(255,255,255,.7);
+
+  border-radius:21px;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.28),
+    0 5px 20px rgba(0,0,0,.12);
+
+  backdrop-filter:blur(8px);
+}
+
+
+/* =========================
+   AUTH HEADING
+========================= */
+
+.login-section h2{
+  font-size:27px;
+  font-weight:800;
+  color:#171717;
+
+  margin-bottom:7px;
+
+  letter-spacing:-.7px;
+}
+
+.login-section>p{
+  color:#777;
+
+  line-height:1.45;
+
+  margin-bottom:18px;
+
+  font-size:14px;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+
+.input{
+  width:100%;
+
+  padding:12px 13px;
+
+  border:1px solid #dedede;
+
+  border-radius:11px;
+
+  margin-bottom:10px;
+
+  outline:0;
+
+  background:#fff;
+
+  color:#222;
+
+  font-size:14px;
+
+  transition:
+    border-color .2s,
+    box-shadow .2s,
+    transform .2s;
+}
+
+.input::placeholder{
+  color:#999;
+}
+
+.input:focus{
+  border-color:#ff4b23;
+
+  box-shadow:
+    0 0 0 3px rgba(255,75,35,.12);
+}
+
+
+/* =========================
+   MAIN BUTTON
+========================= */
+
+.login-button{
+  width:100%;
+
+  border:0;
+
+  background:#ff4b23;
+
+  color:#fff;
+
+  padding:13px;
+
+  border-radius:11px;
+
+  font-weight:800;
+
+  font-size:14px;
+
+  cursor:pointer;
+
+  transition:
+    background .2s,
+    transform .15s,
+    box-shadow .2s;
+
+  box-shadow:
+    0 7px 18px rgba(255,75,35,.22);
+}
+
+.login-button:hover{
+  background:#e63e19;
+
+  box-shadow:
+    0 9px 22px rgba(255,75,35,.28);
+}
+
+.login-button:active{
+  transform:scale(.98);
+}
+
+.login-button:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+
+/* =========================
+   ERROR MESSAGE
+========================= */
+
+.login-message{
+  margin-top:9px;
+
+  text-align:center;
+
+  color:#d33;
+
+  min-height:17px;
+
+  font-size:13px;
+}
+
+
+/* =========================
+   AUTH LINKS
+========================= */
+
+.auth-links,
+.admin-login-link,
+.back-login{
+  margin-top:14px;
+
+  text-align:center;
+
+  font-size:13px;
+
+  color:#555;
+}
+
+.admin-login-link{
+  padding-top:14px;
+
+  border-top:1px solid #eee;
+}
+
+.auth-links a,
+.admin-login-link a,
+.back-login a{
+  color:var(--p);
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  text-decoration:none;
+}
+
+.auth-links a:hover,
+.admin-login-link a:hover,
+.back-login a:hover{
+  text-decoration:underline;
+}
+
+
+/* =========================
+   SHORT DESKTOP SCREENS
+========================= */
+
+@media (min-width:761px) and (max-height:760px){
+
+  .auth-wrap{
+    padding:12px 16px;
+  }
+
+  .auth-logo{
+    width:72px;
+    height:72px;
+    border-radius:13px;
+    margin-bottom:6px;
+  }
+
+  .auth-brand{
+    margin-bottom:12px;
+  }
+
+  .auth-brand h1{
+    font-size:29px;
+  }
+
+  .auth-brand p{
+    font-size:10px;
+    margin-top:3px;
+  }
+
+  .login-section{
+    width:min(410px,100%);
+    padding:20px 24px;
+    border-radius:19px;
+  }
+
+  .login-section h2{
+    font-size:24px;
+    margin-bottom:5px;
+  }
+
+  .login-section>p{
+    font-size:13px;
+    margin-bottom:13px;
+  }
+
+  .input{
+    padding:10px 12px;
+    margin-bottom:8px;
+  }
+
+  .login-button{
+    padding:11px;
+  }
+
+  .login-message{
+    margin-top:6px;
+    min-height:14px;
+  }
+
+  .auth-links,
+  .admin-login-link,
+  .back-login{
+    margin-top:10px;
+  }
+
+  .admin-login-link{
+    padding-top:10px;
+  }
+}
+
+
+/* =========================
+   MOBILE AUTH
+========================= */
+
+@media(max-width:760px){
+
+  #authArea{
+    min-height:100dvh;
+  }
+
+  .auth-wrap{
+    min-height:100dvh;
+
+    padding:
+      24px
+      14px
+      calc(24px + env(safe-area-inset-bottom));
+
+    justify-content:center;
+  }
+
+  .auth-logo{
+    width:105px;
+    height:105px;
+    border-radius:16px;
+
+    margin-bottom:8px;
+  }
+
+  .auth-brand{
+    margin-bottom:20px;
+  }
+
+  .auth-brand h1{
+    font-size:27px;
+  }
+
+  .auth-brand p{
+    font-size:10px;
+    letter-spacing:1.6px;
+  }
+
+  .login-section{
+    width:min(430px,100%);
+
+    padding:22px 20px;
+
+    border-radius:19px;
+  }
+
+  .login-section h2{
+    font-size:24px;
+  }
+
+  .login-section>p{
+    font-size:13px;
+    margin-bottom:17px;
+  }
+
+  .input{
+    padding:12px;
+
+    margin-bottom:10px;
+  }
+
+  .login-button{
+    padding:12px;
+  }
+
+  .auth-links,
+  .admin-login-link,
+  .back-login{
+    margin-top:13px;
+  }
+
+  .admin-login-link{
+    padding-top:13px;
+  }
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media(max-width:390px){
+
+  .auth-wrap{
+    padding:
+      18px
+      12px
+      calc(18px + env(safe-area-inset-bottom));
+  }
+
+  .auth-logo{
+    width:88px;
+    height:88px;
+  }
+
+  .auth-brand{
+    margin-bottom:14px;
+  }
+
+  .auth-brand h1{
+    font-size:24px;
+  }
+
+  .auth-brand p{
+    font-size:9px;
+    letter-spacing:1.3px;
+  }
+
+  .login-section{
+    padding:19px 17px;
+    border-radius:18px;
+  }
+
+  .login-section h2{
+    font-size:22px;
+  }
+
+  .login-section>p{
+    font-size:12px;
+    margin-bottom:14px;
+  }
+
+  .input{
+    padding:11px;
+    font-size:13px;
+  }
+
+  .login-button{
+    padding:11px;
+    font-size:13px;
+  }
+
+  .auth-links,
+  .admin-login-link,
+  .back-login{
+    font-size:12px;
+    margin-top:11px;
+  }
+
+  .admin-login-link{
+    padding-top:11px;
+  }
+}
+
+
+/* =========================
+   APP
+========================= */
+
+.app-main{
+  min-height:calc(100vh - 70px);
+}
+
+.view{
+  display:none;
+}
+
+.view.active{
+  display:block;
+}
+
+.container{
+  max-width:1240px;
+  margin:auto;
+  padding:35px 20px 90px;
+}
+
+.section-heading{
+  margin-bottom:24px;
+}
+
+.section-heading h1{
+  font-size:32px;
+  margin-bottom:7px;
+}
+
+.section-heading p{
+  color:var(--muted);
+  line-height:1.5;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero-wrap{
+  width:100%;
+  height:calc(100vh - 70px);
+  min-height:560px;
+  max-height:900px;
+  position:relative;
+  overflow:hidden;
+  background:#171717;
+}
+
+.hero-slide{
+  position:absolute;
+  inset:0;
+
+  opacity:0;
+  visibility:hidden;
+
+  transform:scale(1.03);
+
+  transition:
+    opacity .55s ease,
+    transform 2.6s ease,
+    visibility .55s;
+}
+
+.hero-slide.active{
+  opacity:1;
+  visibility:visible;
+  transform:scale(1);
+}
+
+.hero-bg{
+  position:absolute;
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  background:#222;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.82) 0%,
+      rgba(0,0,0,.52) 42%,
+      rgba(0,0,0,.18) 75%,
+      rgba(0,0,0,.4) 100%
+    );
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+
+  height:100%;
+
+  max-width:1240px;
+
+  margin:auto;
+
+  padding:0 20px;
+
+  display:flex;
+
+  align-items:center;
+}
+
+.hero-copy{
+  max-width:650px;
+  color:#fff;
+}
+
+.hero-kicker{
+  display:inline-block;
+
+  background:rgba(255,75,35,.95);
+
+  padding:8px 13px;
+
+  border-radius:30px;
+
+  font-size:12px;
+
+  font-weight:900;
+
+  text-transform:uppercase;
+
+  letter-spacing:.5px;
+
+  margin-bottom:18px;
+}
+
+.hero-copy h1{
+  font-size:clamp(40px,6vw,76px);
+
+  line-height:.98;
+
+  margin-bottom:18px;
+
+  font-weight:950;
+
+  letter-spacing:-2px;
+}
+
+.hero-copy p{
+  font-size:clamp(15px,1.7vw,20px);
+
+  line-height:1.55;
+
+  color:#eee;
+
+  max-width:570px;
+
+  margin-bottom:25px;
+}
+
+.hero-meta{
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+  flex-wrap:wrap;
+
+  margin-bottom:25px;
+}
+
+.hero-price{
+  font-size:22px;
+  font-weight:900;
+}
+
+.hero-cta{
+  border:0;
+
+  background:var(--p);
+
+  color:#fff;
+
+  padding:14px 23px;
+
+  border-radius:12px;
+
+  font-weight:900;
+
+  font-size:15px;
+}
+
+.hero-dots{
+  position:absolute;
+
+  z-index:5;
+
+  left:20px;
+
+  bottom:35px;
+
+  display:flex;
+
+  gap:8px;
+}
+
+.hero-dot{
+  width:34px;
+  height:5px;
+
+  border:0;
+
+  border-radius:20px;
+
+  background:rgba(255,255,255,.45);
+
+  padding:0;
+
+  transition:.25s;
+}
+
+.hero-dot.active{
+  background:#fff;
+  width:52px;
+}
+
+.hero-arrow{
+  position:absolute;
+
+  z-index:5;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  width:46px;
+  height:46px;
+
+  border:0;
+
+  border-radius:50%;
+
+  background:rgba(255,255,255,.18);
+
+  color:#fff;
+
+  font-size:25px;
+
+  backdrop-filter:blur(8px);
+}
+
+.hero-arrow:hover{
+  background:#fff;
+  color:#222;
+}
+
+.hero-prev{
+  left:20px;
+}
+
+.hero-next{
+  right:20px;
+}
+
+.hero-empty{
+  height:100%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:#fff;
+
+  text-align:center;
+
+  padding:20px;
+}
+
+.hero-empty h2{
+  font-size:34px;
+  margin-bottom:10px;
+}
+
+.hero-empty p{
+  color:#ccc;
+}
+
+
+/* =========================
+   HOME
+========================= */
+
+.welcome{
+  padding:70px 20px 80px;
+  background:#fff;
+}
+
+.welcome-inner{
+  max-width:1100px;
+
+  margin:auto;
+
+  text-align:center;
+}
+
+.welcome-badge{
+  color:var(--p);
+
+  font-size:12px;
+
+  font-weight:900;
+
+  text-transform:uppercase;
+
+  letter-spacing:1px;
+
+  margin-bottom:10px;
+}
+
+.welcome h2{
+  font-size:clamp(30px,4vw,46px);
+  margin-bottom:12px;
+}
+
+.welcome>div>p{
+  max-width:650px;
+
+  margin:0 auto;
+
+  color:var(--muted);
+
+  line-height:1.65;
+}
+
+.features{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:18px;
+
+  margin-top:38px;
+}
+
+.feature{
+  padding:25px 18px;
+
+  border:1px solid var(--line);
+
+  border-radius:18px;
+
+  background:#fff;
+}
+
+.feature-icon{
+  font-size:31px;
+  margin-bottom:10px;
+}
+
+.feature h3{
+  font-size:18px;
+  margin-bottom:6px;
+}
+
+.feature p{
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.5;
+}
+
+.home-menu-cta{
+  margin-top:35px;
+
+  border:0;
+
+  background:var(--p);
+
+  color:#fff;
+
+  padding:14px 22px;
+
+  border-radius:12px;
+
+  font-weight:900;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+.products-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fill,minmax(245px,1fr));
+
+  gap:20px;
+}
+
+.product-card{
+  background:#fff;
+
+  border-radius:18px;
+
+  overflow:hidden;
+
+  box-shadow:var(--shadow);
+
+  display:flex;
+
+  flex-direction:column;
+
+  min-width:0;
+
+  transition:.2s transform;
+}
+
+.product-card:hover{
+  transform:translateY(-4px);
+}
+
+.product-image{
+  width:100%;
+
+  height:190px;
+
+  object-fit:cover;
+
+  display:block;
+
+  background:#eee;
+}
+
+.product-info{
+  padding:17px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  flex:1;
+}
+
+.product-name{
+  font-size:19px;
+
+  font-weight:800;
+
+  margin-bottom:7px;
+}
+
+.product-category{
+  display:inline-block;
+
+  align-self:flex-start;
+
+  font-size:11px;
+
+  font-weight:800;
+
+  background:#f1f1f1;
+
+  color:#666;
+
+  padding:5px 9px;
+
+  border-radius:20px;
+
+  margin-bottom:9px;
+}
+
+.product-description{
+  color:var(--muted);
+
+  font-size:13px;
+
+  line-height:1.5;
+
+  margin-bottom:16px;
+
+  flex:1;
+}
+
+.product-bottom{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
+}
+
+.product-price{
+  font-size:20px;
+
+  font-weight:800;
+
+  color:var(--p);
+}
+
+.add-button{
+  border:0;
+
+  background:var(--p);
+
+  color:#fff;
+
+  padding:10px 15px;
+
+  border-radius:10px;
+
+  font-weight:800;
+}
+
+.details-button{
+  width:100%;
+
+  border:1px solid var(--p);
+
+  background:#fff;
+
+  color:var(--p);
+
+  padding:10px;
+
+  border-radius:10px;
+
+  font-weight:800;
+
+  margin-top:12px;
+}
+
+.details-button:hover{
+  background:#fff5f1;
+}
+
+
+/* =========================
+   PRODUCT DETAIL
+========================= */
+
+.detail-card{
+  max-width:1000px;
+
+  margin:auto;
+
+  background:#fff;
+
+  border-radius:24px;
+
+  overflow:hidden;
+
+  box-shadow:var(--shadow);
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+}
+
+.detail-image{
+  width:100%;
+
+  height:100%;
+
+  min-height:430px;
+
+  object-fit:cover;
+
+  background:#eee;
+}
+
+.detail-info{
+  padding:42px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:center;
+}
+
+.back-button{
+  border:0;
+
+  background:#f1f1f1;
+
+  padding:9px 13px;
+
+  border-radius:10px;
+
+  font-weight:800;
+
+  align-self:flex-start;
+
+  margin-bottom:25px;
+}
+
+.detail-category{
+  color:var(--p);
+
+  font-size:12px;
+
+  font-weight:900;
+
+  text-transform:uppercase;
+
+  letter-spacing:.7px;
+
+  margin-bottom:10px;
+}
+
+.detail-info h1{
+  font-size:42px;
+
+  line-height:1.05;
+
+  margin-bottom:12px;
+}
+
+.detail-description{
+  color:var(--muted);
+
+  line-height:1.65;
+
+  margin-bottom:20px;
+}
+
+.detail-price{
+  font-size:28px;
+
+  color:var(--p);
+
+  font-weight:900;
+
+  margin-bottom:20px;
+}
+
+.detail-action{
+  display:flex;
+
+  gap:10px;
+
+  align-items:center;
+}
+
+.detail-qty{
+  display:flex;
+
+  align-items:center;
+
+  border:1px solid #ddd;
+
+  border-radius:11px;
+
+  overflow:hidden;
+}
+
+.detail-qty button{
+  border:0;
+
+  background:#f4f4f4;
+
+  width:42px;
+
+  height:46px;
+
+  font-size:20px;
+
+  font-weight:900;
+}
+
+.detail-qty span{
+  min-width:40px;
+
+  text-align:center;
+
+  font-weight:900;
+}
+
+.detail-add{
+  flex:1;
+
+  border:0;
+
+  background:var(--p);
+
+  color:#fff;
+
+  padding:14px;
+
+  border-radius:11px;
+
+  font-weight:900;
+}
+
+
+/* =========================
+   CART / ORDERS
+========================= */
+
+.panel{
+  background:#fff;
+
+  border-radius:20px;
+
+  padding:25px;
+
+  box-shadow:var(--shadow);
+}
+
+.cart-title{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:12px;
+
+  margin-bottom:16px;
+}
+
+.cart-title h2{
+  font-size:23px;
+}
+
+.cart-count{
+  background:var(--p);
+
+  color:#fff;
+
+  min-width:30px;
+
+  height:30px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:50%;
+
+  font-size:13px;
+
+  font-weight:800;
+}
+
+.cart-item{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:14px;
+
+  padding:15px 0;
+
+  border-bottom:1px solid var(--line);
+}
+
+.cart-item-info{
+  flex:1;
+
+  min-width:0;
+}
+
+.cart-item-name{
+  font-size:16px;
+
+  font-weight:800;
+
+  margin-bottom:4px;
+
+  overflow-wrap:anywhere;
+}
+
+.cart-item-price{
+  color:var(--muted);
+
+  font-size:13px;
+}
+
+.quantity-controls{
+  display:flex;
+
+  align-items:center;
+
+  gap:9px;
+}
+
+.quantity-button{
+  width:34px;
+  height:34px;
+
+  border:0;
+
+  border-radius:9px;
+
+  background:var(--p);
+
+  color:#fff;
+
+  font-size:19px;
+
+  font-weight:800;
+}
+
+.quantity-number{
+  min-width:22px;
+
+  text-align:center;
+
+  font-weight:800;
+}
+
+.remove-button{
+  border:0;
+
+  background:#f1f1f1;
+
+  color:#c33;
+
+  padding:9px 11px;
+
+  border-radius:9px;
+
+  font-weight:750;
+}
+
+.cart-total{
+  text-align:right;
+
+  margin-top:20px;
+
+  font-size:21px;
+
+  font-weight:800;
+
+  color:var(--p);
+}
+
+.checkout{
+  margin-top:21px;
+
+  padding-top:21px;
+
+  border-top:1px solid var(--line);
+}
+
+.checkout h3{
+  margin-bottom:11px;
+
+  font-size:17px;
+}
+
+.address-input{
+  width:100%;
+
+  padding:14px 13px;
+
+  border:1px solid #ddd;
+
+  border-radius:11px;
+
+  margin-bottom:12px;
+
+  outline:0;
+}
+
+.message{
+  background:#fafafa;
+
+  border:1px solid var(--line);
+
+  border-radius:13px;
+
+  padding:28px;
+
+  text-align:center;
+
+  color:#777;
+}
+
+.order-card{
+  background:#fafafa;
+
+  border:1px solid var(--line);
+
+  border-radius:15px;
+
+  padding:17px;
+
+  margin-bottom:13px;
+}
+
+.order-card:last-child{
+  margin-bottom:0;
+}
+
+.order-header{
+  display:flex;
+
+  align-items:flex-start;
+
+  justify-content:space-between;
+
+  gap:12px;
+
+  margin-bottom:13px;
+}
+
+.order-id{
+  font-size:15px;
+
+  font-weight:800;
+
+  overflow-wrap:anywhere;
+}
+
+.order-date{
+  color:#888;
+
+  font-size:12px;
+
+  margin-top:4px;
+}
+
+.order-status{
+  padding:7px 10px;
+
+  border-radius:20px;
+
+  font-size:11px;
+
+  font-weight:800;
+
+  white-space:nowrap;
+}
+
+.status-Pending{
+  background:#fff3cd;
+  color:#856404;
+}
+
+.status-Confirmed{
+  background:#d1ecf1;
+  color:#0c5460;
+}
+
+.status-Preparing{
+  background:#e2d9f3;
+  color:#4b2c69;
+}
+
+.status-Out{
+  background:#cce5ff;
+  color:#004085;
+}
+
+.status-Delivered{
+  background:#d4edda;
+  color:#155724;
+}
+
+.status-Cancelled{
+  background:#f8d7da;
+  color:#721c24;
+}
+
+.order-items{
+  border-top:1px solid var(--line);
+
+  border-bottom:1px solid var(--line);
+
+  padding:10px 0;
+
+  margin-bottom:11px;
+}
+
+.order-item{
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:12px;
+
+  padding:6px 0;
+
+  font-size:13px;
+}
+
+.order-item-name{
+  font-weight:650;
+
+  overflow-wrap:anywhere;
+}
+
+.order-item-price{
+  color:#555;
+
+  white-space:nowrap;
+}
+
+.order-footer{
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:14px;
+
+  font-size:13px;
+}
+
+.order-address{
+  color:#666;
+
+  overflow-wrap:anywhere;
+}
+
+.order-total{
+  font-size:17px;
+
+  font-weight:800;
+
+  color:var(--p);
+
+  white-space:nowrap;
+}
+
+
+/* =========================
+   FLOATING CART
+========================= */
+
+.floating-cart{
+  position:fixed;
+
+  left:14px;
+  right:14px;
+
+  bottom:
+    calc(14px + env(safe-area-inset-bottom));
+
+  z-index:90;
+
+  background:#222;
+
+  color:#fff;
+
+  border-radius:15px;
+
+  padding:12px 14px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:12px;
+
+  box-shadow:0 10px 35px rgba(0,0,0,.25);
+
+  transform:translateY(130px);
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:.25s;
+}
+
+
+
+.floating-cart.visible{
+  transform:translateY(0);
+
+  opacity:1;
+
+  pointer-events:auto;
+}
+
+.floating-cart-info{
+  font-size:13px;
+}
+
+.floating-cart-info strong{
+  display:block;
+
+  font-size:15px;
+}
+
+.floating-cart-button{
+  border:0;
+
+  background:var(--p);
+
+  color:#fff;
+
+  border-radius:10px;
+
+  padding:10px 14px;
+
+  font-weight:800;
+
+  white-space:nowrap;
+}
+
+
+/* =========================================================
+   MEERU — ZOMATO STYLE FLOATING ORDER TRACKER
+========================================================= */
+
+.floating-track-order {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+
+  width: min(
+    calc(100% - 32px),
+    520px
+  );
+
+  transform:
+    translate(-50%, 140px)
+    scale(.96);
+
+  opacity: 0;
+  visibility: hidden;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 14px 16px;
+
+  background:
+    rgba(255, 255, 255, .97);
+
+  border: 1px solid
+    rgba(0, 0, 0, .08);
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 14px 40px
+    rgba(0, 0, 0, .18);
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+
+  z-index: 9998;
+
+  transition:
+    transform .42s cubic-bezier(.2,.8,.2,1),
+    opacity .32s ease,
+    visibility .32s ease;
+}
+
+
+.floating-track-order.visible {
+
+  transform:
+    translate(-50%, 0)
+    scale(1);
+
+  opacity: 1;
+
+  visibility: visible;
+
+}
+
+
+.floating-track-icon {
+
+  width: 46px;
+  height: 46px;
+
+  flex: 0 0 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff7a18,
+      #ff4b2b
+    );
+
+  color: #fff;
+
+  font-size: 23px;
+
+  box-shadow:
+    0 7px 18px
+    rgba(255, 90, 40, .25);
+
+}
+
+
+.floating-track-info {
+
+  min-width: 0;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+}
+
+
+.floating-track-info strong {
+
+  font-size: 14px;
+
+  font-weight: 850;
+
+  color: #171717;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+}
+
+
+.floating-track-info span {
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  color: #777;
+
+}
+
+
+.floating-track-button {
+
+  flex: 0 0 auto;
+
+  border: none;
+
+  outline: none;
+
+  cursor: pointer;
+
+  padding: 11px 15px;
+
+  border-radius: 12px;
+
+  background:
+    #111;
+
+  color: #fff;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  transition:
+    transform .2s ease,
+    background .2s ease;
+
+}
+
+
+.floating-track-button:hover {
+
+  transform:
+    translateY(-1px);
+
+  background:
+    #2a2a2a;
+
+}
+
+
+.floating-track-button:active {
+
+  transform:
+    scale(.97);
+
+}
+
+
+/* =========================================================
+   ORDER SUCCESS TOAST
+========================================================= */
+
+.order-success-toast {
+
+  position: fixed;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%)
+    scale(.72);
+
+  opacity: 0;
+  visibility: hidden;
+
+  width: min(
+    calc(100% - 32px),
+    430px
+  );
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 18px 20px;
+
+  background:
+    rgba(255, 255, 255, .98);
+
+  border:
+    1px solid
+    rgba(0, 0, 0, .08);
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 22px 70px
+    rgba(0, 0, 0, .25);
+
+  backdrop-filter:
+    blur(16px);
+
+  -webkit-backdrop-filter:
+    blur(16px);
+
+  z-index: 10000;
+
+  pointer-events: none;
+
+}
+
+
+.order-success-toast.show {
+
+  visibility: visible;
+
+  animation:
+    meeruOrderSuccess
+    1.5s
+    cubic-bezier(.2,.8,.2,1)
+    forwards;
+
+}
+
+
+.success-toast-icon {
+
+  width: 52px;
+  height: 52px;
+
+  flex: 0 0 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #22c55e,
+      #16a34a
+    );
+
+  font-size: 27px;
+
+  animation:
+    successIconPop
+    .55s
+    cubic-bezier(.2,1.4,.4,1)
+    both;
+
+}
+
+
+.success-toast-content {
+
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+
+}
+
+
+.success-toast-content strong {
+
+  color: #171717;
+
+  font-size: 16px;
+
+  font-weight: 900;
+
+}
+
+
+.success-toast-content span {
+
+  color: #707070;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  line-height: 1.4;
+
+}
+
+
+@keyframes meeruOrderSuccess {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(.72);
+
+  }
+
+  18% {
+
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.06);
+
+  }
+
+  30% {
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+
+  }
+
+  78% {
+
+    opacity: 1;
+
+    transform:
+      translate(-50%, -50%)
+      scale(1);
+
+  }
+
+  100% {
+
+    opacity: 0;
+
+    transform:
+      translate(-50%, -50%)
+      scale(.94);
+
+  }
+
+}
+
+
+@keyframes successIconPop {
+
+  0% {
+
+    transform:
+      scale(.4)
+      rotate(-15deg);
+
+  }
+
+  70% {
+
+    transform:
+      scale(1.15)
+      rotate(4deg);
+
+  }
+
+  100% {
+
+    transform:
+      scale(1)
+      rotate(0);
+
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .floating-track-order {
+
+    bottom: 14px;
+
+    width:
+      calc(100% - 20px);
+
+    padding:
+      12px;
+
+    gap: 10px;
+
+    border-radius: 16px;
+
+  }
+
+
+  .floating-track-icon {
+
+    width: 42px;
+    height: 42px;
+
+    flex-basis: 42px;
+
+    border-radius: 12px;
+
+    font-size: 20px;
+
+  }
+
+
+  .floating-track-info strong {
+
+    font-size: 12px;
+
+  }
+
+
+  .floating-track-info span {
+
+    font-size: 11px;
+
+  }
+
+
+  .floating-track-button {
+
+    padding:
+      10px 11px;
+
+    font-size: 11px;
+
+  }
+
+
+  .order-success-toast {
+
+    width:
+      calc(100% - 28px);
+
+    padding:
+      15px;
+
+    border-radius: 17px;
+
+  }
+
+
+  .success-toast-icon {
+
+    width: 46px;
+    height: 46px;
+
+    flex-basis: 46px;
+
+    font-size: 23px;
+
+  }
+
+
+  .success-toast-content strong {
+
+    font-size: 14px;
+
+  }
+
+
+  .success-toast-content span {
+
+    font-size: 11px;
+
+  }
+
+}
+
+
+/* =========================
+   USER ORDER REFRESH
+========================= */
+
+.orders-heading-row{
+
+  display:flex;
+
+  align-items:flex-start;
+
+  justify-content:space-between;
+
+  gap:18px;
+}
+
+
+.user-refresh-button{
+
+  flex:none;
+
+  border:0;
+
+  background:#222;
+
+  color:#fff;
+
+  padding:11px 16px;
+
+  border-radius:10px;
+
+  font-weight:800;
+
+  white-space:nowrap;
+
+  box-shadow:
+    0 6px 16px rgba(0,0,0,.12);
+
+  transition:
+    background .2s,
+    transform .15s;
+}
+
+
+.user-refresh-button:hover{
+
+  background:#333;
+
+}
+
+
+.user-refresh-button:active{
+
+  transform:scale(.97);
+
+}
+
+
+.user-refresh-button:disabled{
+
+  opacity:.65;
+
+  cursor:not-allowed;
+
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  background:#222;
+
+  color:#aaa;
+
+  text-align:center;
+
+  padding:22px;
+
+  font-size:13px;
+}
+
+
+/* =========================
+   MOBILE APP
+========================= */
+
+@media(max-width:760px){
+
+  .header-content{
+    min-height:64px;
+
+    padding:10px 14px;
+  }
+
+  .brand-logo{
+    width:50px;
+
+    height:45px;
+
+    border-radius:10px;
+  }
+
+  .brand-name{
+    font-size:19px;
+  }
+
+  .tagline{
+    font-size:9px;
+  }
+
+  .header-nav>.nav-button,
+  .header-nav>.user-name{
+    display:none;
+  }
+
+  .menu-button{
+    display:block;
+  }
+
+  .hero-wrap{
+    height:calc(100svh - 64px);
+
+    min-height:560px;
+
+    max-height:none;
+  }
+
+  .hero-overlay{
+    background:
+      linear-gradient(
+        90deg,
+        rgba(0,0,0,.76),
+        rgba(0,0,0,.38)
+      );
+  }
+
+  .hero-content{
+    padding:0 22px;
+
+    align-items:flex-end;
+
+    padding-bottom:105px;
+  }
+
+  .hero-copy{
+    max-width:100%;
+  }
+
+  .hero-copy h1{
+    font-size:clamp(38px,12vw,58px);
+
+    letter-spacing:-1px;
+  }
+
+  .hero-copy p{
+    font-size:15px;
+  }
+
+  .hero-prev{
+    left:12px;
+  }
+
+  .hero-next{
+    right:12px;
+  }
+
+  .hero-arrow{
+    width:40px;
+
+    height:40px;
+
+    font-size:21px;
+  }
+
+  .hero-dots{
+    left:22px;
+
+    bottom:34px;
+  }
+
+  .hero-dot{
+    width:25px;
+  }
+
+  .hero-dot.active{
+    width:38px;
+  }
+
+  .welcome{
+    padding:55px 18px 65px;
+  }
+
+  .features{
+    grid-template-columns:1fr;
+
+    gap:12px;
+  }
+
+  .container{
+    padding:25px 14px 90px;
+  }
+
+  .section-heading h1{
+    font-size:28px;
+  }
+
+  .products-grid{
+    grid-template-columns:
+      repeat(2,minmax(0,1fr));
+
+    gap:12px;
+  }
+
+  .product-image{
+    height:145px;
+  }
+
+  .product-info{
+    padding:13px;
+  }
+
+  .product-name{
+    font-size:16px;
+  }
+
+  .product-description{
+    font-size:12px;
+  }
+
+  .product-price{
+    font-size:17px;
+  }
+
+  .add-button{
+    padding:9px 11px;
+  }
+
+  .detail-card{
+    grid-template-columns:1fr;
+  }
+
+  .detail-image{
+    height:280px;
+
+    min-height:0;
+  }
+
+  .detail-info{
+    padding:24px;
+  }
+
+  .detail-info h1{
+    font-size:32px;
+  }
+
+  .panel{
+    padding:17px;
+  }
+
+  .cart-item{
+    flex-wrap:wrap;
+  }
+
+  .cart-item-info{
+    flex-basis:100%;
+  }
+
+  .quantity-controls{
+    margin-left:auto;
+  }
+
+  .order-footer{
+    align-items:flex-start;
+  }
+
+  .orders-heading-row{
+
+  flex-direction:column;
+
+  align-items:stretch;
+
+}
+
+
+.user-refresh-button{
+
+  width:100%;
+
+}
+
+
+.floating-track-order{
+
+  bottom:
+    calc(76px + env(safe-area-inset-bottom));
+
+}
+}
+
+
+/* =========================
+   VERY SMALL MOBILE
+========================= */
+
+@media(max-width:390px){
+
+  .products-grid{
+    grid-template-columns:1fr;
+  }
+
+  .product-image{
+    height:185px;
+  }
+
+  .brand-name{
+    font-size:18px;
+  }
+}
+
+
+/* =========================
+   DESKTOP FLOATING CART
+========================= */
+
+@media(min-width:761px){
+
+  .floating-cart{
+    display:none!important;
+  }
+}
+
+@keyframes adminNotificationIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px) scale(.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* =========================================================
+   CUSTOMER ORDERS — LIVE / HISTORY
+========================================================= */
+
+.live-orders-section {
+  margin-bottom: 28px;
+  padding: 20px;
+  border: 2px solid rgba(255, 75, 35, 0.18);
+  border-radius: 20px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 75, 35, 0.055),
+      rgba(255, 255, 255, 0.95)
+    );
+}
+
+.live-orders-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.live-orders-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0;
+  font-size: 21px;
+  font-weight: 900;
+}
+
+.live-orders-title-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff4b23;
+  box-shadow: 0 0 0 5px rgba(255, 75, 35, 0.12);
+  animation: liveDotPulse 1.4s infinite;
+}
+
+.live-orders-count {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: #fff0eb;
+  color: #ff4b23;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.live-order-card {
+  position: relative;
+  border: 2px solid rgba(255, 75, 35, 0.18);
+  box-shadow:
+    0 10px 30px rgba(255, 75, 35, 0.08);
+}
+
+.live-order-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  border-radius: 20px 0 0 20px;
+  background: #ff4b23;
+}
+
+.live-status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 9px 13px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 900;
+  white-space: nowrap;
+
+  animation:
+    liveStatusBlink 1.45s ease-in-out infinite;
+}
+
+.live-status-label {
+  margin: 0 0 7px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #ff4b23;
+}
+
+.live-status-message {
+  margin: 12px 0 0;
+  padding: 11px 13px;
+  border-radius: 11px;
+  background: #fff8f5;
+  color: #555;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.past-orders-section {
+  margin-top: 22px;
+}
+
+.past-orders-dropdown {
+  overflow: hidden;
+  border: 1px solid #e9e9e9;
+  border-radius: 18px;
+  background: #fff;
+}
+
+.past-orders-summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  user-select: none;
+}
+
+.past-orders-summary::-webkit-details-marker {
+  display: none;
+}
+
+.past-orders-summary-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.past-orders-folder {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #f7f7f7;
+  font-size: 17px;
+}
+
+.past-orders-title {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.past-orders-count {
+  margin-left: 4px;
+  color: #888;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.past-orders-arrow {
+  font-size: 13px;
+  color: #777;
+  transition: transform 0.2s ease;
+}
+
+.past-orders-dropdown[open] .past-orders-arrow {
+  transform: rotate(180deg);
+}
+
+.past-orders-content {
+  padding: 15px;
+  border-top: 1px solid #eee;
+  background: #fafafa;
+}
+
+.past-orders-content .order-card {
+  margin-bottom: 14px;
+}
+
+.past-orders-content .order-card:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   LIVE ANIMATIONS
+========================================================= */
+
+@keyframes liveStatusBlink {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 75, 35, 0.12);
+    filter: brightness(1);
+  }
+
+  50% {
+    transform: scale(1.035);
+    box-shadow: 0 0 0 7px rgba(255, 75, 35, 0.08);
+    filter: brightness(1.08);
+  }
+
+}
+
+@keyframes liveDotPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.35);
+    opacity: 0.55;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .live-orders-section {
+    padding: 15px;
+    border-radius: 17px;
+  }
+
+  .live-orders-title {
+    font-size: 18px;
+  }
+
+  .live-orders-header {
+    margin-bottom: 13px;
+  }
+
+  .live-status-badge {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .past-orders-summary {
+    padding: 15px;
+  }
+
+  .past-orders-content {
+    padding: 10px;
+  }
+
+}
+
+
+/* =========================================================
+   PREMIUM MENU
+========================================================= */
+
+.menu-category-nav {
+
+  display: flex;
+  gap: 10px;
+
+  overflow-x: auto;
+
+  padding: 6px 2px 14px;
+
+  margin-bottom: 28px;
+
+  scrollbar-width: none;
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 20;
+
+  background: rgba(255,255,255,0.96);
+
+  backdrop-filter: blur(10px);
+
+}
+
+.menu-category-nav::-webkit-scrollbar {
+
+  display: none;
+
+}
+
+
+.menu-category-btn {
+
+  flex: 0 0 auto;
+
+  border: 1px solid #e7e7e7;
+
+  background: #fff;
+
+  color: #444;
+
+  padding: 10px 15px;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    color .2s ease,
+    box-shadow .2s ease;
+
+}
+
+
+.menu-category-btn:hover {
+
+  transform: translateY(-2px);
+
+}
+
+
+.menu-category-btn.active {
+
+  background: #111;
+
+  color: #fff;
+
+  border-color: #111;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.15);
+
+}
+
+
+/* =========================================================
+   MENU SECTIONS
+========================================================= */
+
+.menu-section {
+
+  margin-bottom: 48px;
+
+  scroll-margin-top: 90px;
+
+}
+
+
+.menu-section-heading {
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 18px;
+
+}
+
+
+.menu-section-kicker {
+
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.3px;
+
+  text-transform: uppercase;
+
+  opacity: .65;
+
+}
+
+
+.menu-section-heading h2 {
+
+  margin: 0;
+
+  font-size: 28px;
+
+  font-weight: 900;
+
+}
+
+
+.menu-section-heading p {
+
+  margin: 5px 0 0;
+
+  color: #777;
+
+  font-size: 14px;
+
+}
+
+
+.category-item-count {
+
+  flex: 0 0 auto;
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  background: #f3f3f3;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+}
+
+
+/* =========================================================
+   MUST TRY
+========================================================= */
+
+.must-try-section {
+
+  padding: 24px;
+
+  border-radius: 24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff8ed,
+      #fff
+    );
+
+  border: 1px solid #f1dfc8;
+
+  margin-bottom: 42px;
+
+}
+
+
+.must-try-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(230px, 1fr)
+    );
+
+  gap: 18px;
+
+}
+
+
+.must-try-card {
+
+  position: relative;
+
+  border: 1px solid #f0dfca !important;
+
+  overflow: hidden;
+
+}
+
+
+.product-badge {
+
+  position: absolute;
+
+  top: 12px;
+
+  left: 12px;
+
+  z-index: 5;
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  background: #111;
+
+  color: #fff;
+
+  font-size: 10px;
+
+  font-weight: 900;
+
+  letter-spacing: .5px;
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,.2);
+
+}
+
+
+.product-image-wrap {
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+
+.product-image {
+
+  transition:
+    transform .35s ease;
+
+}
+
+
+.product-card:hover
+.product-image {
+
+  transform: scale(1.04);
+
+}
+
+
+/* =========================================================
+   PRODUCT CARD POLISH
+========================================================= */
+
+.product-card {
+
+  position: relative;
+
+  overflow: hidden;
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+
+}
+
+
+.product-card:hover {
+
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,.12);
+
+}
+
+
+.product-unavailable {
+
+  opacity: .7;
+
+}
+
+
+.product-category {
+
+  display: inline-block;
+
+  margin-bottom: 5px;
+
+  font-size: 10px;
+
+  font-weight: 900;
+
+  text-transform: uppercase;
+
+  letter-spacing: .7px;
+
+  opacity: .6;
+
+}
+
+
+.add-button {
+
+  min-width: 76px;
+
+  border-radius: 10px !important;
+
+  font-weight: 900 !important;
+
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+@media (max-width: 760px) {
+
+  .menu-category-nav {
+
+    margin-left: -12px;
+
+    margin-right: -12px;
+
+    padding-left: 12px;
+
+    padding-right: 12px;
+
+  }
+
+
+  .menu-section {
+
+    margin-bottom: 35px;
+
+  }
+
+
+  .menu-section-heading h2 {
+
+    font-size: 22px;
+
+  }
+
+
+  .must-try-section {
+
+    padding: 16px;
+
+    border-radius: 18px;
+
+  }
+
+
+  .must-try-grid {
+
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap: 10px;
+
+  }
+
+}
+
+
+@media (max-width: 390px) {
+
+  .must-try-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .menu-category-btn {
+
+    padding: 9px 13px;
+
+    font-size: 12px;
+
+  }
+
+}
+
+/* ================================
+   FIX: MENU SECTION LAYOUT
+================================ */
+
+#productsContainer.products-grid {
+    display: block;
+    width: 100%;
+    min-width: 0;
+}
+
+/* Every menu section gets full width */
+.menu-section,
+.must-try-section {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-bottom: 32px;
+}
+
+/* Product grids inside sections */
+.must-try-grid,
+.category-products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+}
+
+/* Must Try cards */
+.must-try-grid .product-card {
+    width: 100%;
+    min-width: 0;
+}
+
+/* Normal category cards */
+.category-products-grid .product-card {
+    width: 100%;
+    min-width: 0;
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 760px) {
+
+    #productsContainer.products-grid {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .menu-section,
+    .must-try-section {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .must-try-grid,
+    .category-products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .product-card {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 145px;
+        object-fit: cover;
+    }
+
+    .product-info {
+        padding: 11px;
+    }
+
+    .product-name {
+        font-size: 15px;
+        line-height: 1.2;
+    }
+
+    .product-description {
+        font-size: 12px;
+        line-height: 1.35;
+    }
+
+    .product-bottom {
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .add-button,
+    .details-button {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 390px) {
+
+    .must-try-grid,
+    .category-products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .product-image {
+        height: 125px;
+    }
+
+    .product-info {
+        padding: 9px;
+    }
+
+    .product-name {
+        font-size: 14px;
+    }
+
+    .product-description {
+        font-size: 11px;
+    }
+}
+
+/* ==========================================
+   PRODUCT SUGGESTIONS
+========================================== */
+
+.suggested-food-section {
+    margin-top: 28px;
+    padding: 0 0 35px;
+}
+
+.suggested-food-heading {
+    margin-bottom: 16px;
+}
+
+.suggested-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+    margin-bottom: 5px;
+}
+
+.suggested-food-heading h2 {
+    margin: 0;
+    font-size: 24px;
+    line-height: 1.15;
+}
+
+.suggested-food-heading p {
+    margin: 6px 0 0;
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   SUGGESTION GRID
+========================================== */
+
+.suggested-food-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+
+.suggested-food-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+    min-width: 0;
+}
+
+
+.suggested-food-card > img {
+    width: 100%;
+    height: 145px;
+    object-fit: cover;
+    display: block;
+}
+
+
+.suggested-food-info {
+    padding: 11px;
+}
+
+
+.suggested-food-info h3 {
+    margin: 0 0 5px;
+    font-size: 15px;
+    line-height: 1.2;
+}
+
+
+.suggested-food-info p {
+    margin: 0 0 9px;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+
+.suggested-add-btn {
+    width: 100%;
+    border: 1px solid #ff4b2b;
+    background: #fff;
+    color: #ff4b2b;
+    border-radius: 8px;
+    padding: 8px 6px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+
+.suggested-add-btn:hover {
+    background: #ff4b2b;
+    color: #fff;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 760px) {
+
+    .suggested-food-section {
+        margin-top: 22px;
+        padding-bottom: 25px;
+    }
+
+    .suggested-food-heading h2 {
+        font-size: 20px;
+    }
+
+    .suggested-food-heading p {
+        font-size: 13px;
+    }
+
+    .suggested-food-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .suggested-food-card {
+        border-radius: 13px;
+    }
+
+    .suggested-food-card > img {
+        height: 115px;
+    }
+
+    .suggested-food-info {
+        padding: 9px;
+    }
+
+    .suggested-food-info h3 {
+        font-size: 13px;
+    }
+
+    .suggested-food-info p {
+        font-size: 14px;
+        margin-bottom: 7px;
+    }
+
+    .suggested-add-btn {
+        padding: 7px 5px;
+        font-size: 11px;
+    }
+}
+
+
+/* ==========================================
+   VERY SMALL PHONES
+========================================== */
+
+@media (max-width: 390px) {
+
+    .suggested-food-card > img {
+        height: 105px;
+    }
+
+    .suggested-food-info h3 {
+        font-size: 12px;
+    }
+
+    .suggested-food-info p {
+        font-size: 13px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header id="appHeader" class="header hidden">
+
+  <div class="header-content">
+
+    <div class="brand" onclick="showView('home')">
+
+      <img
+        class="brand-logo"
+        src="assets/meeru-logo.png"
+        alt="Meeru Fast Food Logo">
+
+      <div>
+        <div class="brand-name">Meeru Fast Food</div>
+        <div class="tagline">Fresh Food. Fast Delivery.</div>
+      </div>
+
+    </div>
+
+    <div class="header-nav">
+
+      <span id="userName" class="user-name"></span>
+
+      <button
+        id="homeNav"
+        class="nav-button active"
+        onclick="showView('home')">
+        🏠 Home
+      </button>
+
+      <button
+        id="menuNav"
+        class="nav-button"
+        onclick="showView('menu')">
+        🍔 Menu
+      </button>
+
+      <button
+        id="cartNav"
+        class="nav-button"
+        onclick="showView('cart')">
+        🛒 Cart
+      </button>
+
+      <button
+        id="ordersNav"
+        class="nav-button"
+        onclick="showView('orders')">
+        📦 Orders
+      </button>
+
+      <button
+        id="adminButton"
+        class="nav-button hidden"
+        onclick="goToAdmin()">
+        ⚙️ Admin
+      </button>
+
+      <button
+        class="nav-button"
+        onclick="logout()">
+        Logout
+      </button>
+
+      <button
+        class="menu-button"
+        onclick="toggleMenu()">
+        ☰
+      </button>
+
+    </div>
+
+  </div>
+
+  <div id="mobileMenu" class="mobile-menu">
+
+    <button onclick="showView('home');closeMenu()">
+      🏠 &nbsp; Home
+    </button>
+
+    <button onclick="showView('menu');closeMenu()">
+      🍔 &nbsp; Menu
+    </button>
+
+    <button onclick="showView('cart');closeMenu()">
+      🛒 &nbsp; My Cart
+    </button>
+
+    <button onclick="showView('orders');closeMenu()">
+      📦 &nbsp; My Orders
+    </button>
+
+    <button
+      id="mobileAdminButton"
+      class="hidden"
+      onclick="goToAdmin();closeMenu()">
+      ⚙️ &nbsp; Admin Dashboard
+    </button>
+
+    <button onclick="logout()">
+      🚪 &nbsp; Logout
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- =========================
+     AUTH AREA
+========================= -->
+
+<div id="authArea">
+
+  <div class="auth-wrap">
+
+    <!-- BRAND -->
+
+    <div class="auth-brand">
+
+      <img
+        class="auth-logo"
+        src="assets/meeru-logo.png"
+        alt="Meeru Fast Food Logo">
+
+      <p>
+        Fresh Food. Fast Delivery.
+      </p>
+
+    </div>
+
+
+    <!-- LOGIN -->
+
+    <section id="loginSection" class="login-section">
+
+      <h2 id="loginTitle">
+        Login
+      </h2>
+
+      <p id="loginSubtitle">
+        Login to order your favourite food.
+      </p>
+
+      <input
+        id="email"
+        class="input"
+        type="email"
+        placeholder="Email"
+        autocomplete="email">
+
+      <input
+        id="password"
+        class="input"
+        type="password"
+        placeholder="Password"
+        autocomplete="current-password">
+
+      <button
+        id="loginButton"
+        class="login-button"
+        onclick="login()">
+        Login
+      </button>
+
+      <div
+        id="loginMessage"
+        class="login-message">
+      </div>
+
+      <div class="auth-links">
+        New user?
+        <a onclick="showRegister()">
+          Register here
+        </a>
+      </div>
+
+      <div class="admin-login-link">
+
+        <a onclick="showAdminLogin()">
+          🔐 Admin Login
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- REGISTER -->
+
+    <section
+      id="registerSection"
+      class="login-section hidden">
+
+      <h2>
+        Create Account
+      </h2>
+
+      <p>
+        Register to order your favourite food.
+      </p>
+
+      <input
+        id="registerName"
+        class="input"
+        type="text"
+        placeholder="Full Name"
+        autocomplete="name">
+
+      <input
+        id="registerEmail"
+        class="input"
+        type="email"
+        placeholder="Email"
+        autocomplete="email">
+
+      <input
+        id="registerPassword"
+        class="input"
+        type="password"
+        placeholder="Password"
+        autocomplete="new-password">
+
+      <input
+        id="registerConfirmPassword"
+        class="input"
+        type="password"
+        placeholder="Confirm Password"
+        autocomplete="new-password">
+
+      <button
+        id="registerButton"
+        class="login-button"
+        onclick="registerUser()">
+        Register
+      </button>
+
+      <div
+        id="registerMessage"
+        class="login-message">
+      </div>
+
+      <div class="back-login">
+        Already have an account?
+        <a onclick="showLogin()">
+          Login
+        </a>
+      </div>
+
+    </section>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     MAIN APP
+========================= -->
+
+<main id="appMain" class="app-main hidden">
+
+
+  <!-- =========================
+       HOME
+  ========================= -->
+
+  <section
+    id="homeView"
+    class="view active">
+
+    <div
+      id="heroWrap"
+      class="hero-wrap">
+
+      <div id="heroSlides"></div>
+
+      <button
+        id="heroPrev"
+        class="hero-arrow hero-prev"
+        onclick="changeHero(-1)"
+        aria-label="Previous">
+        ‹
+      </button>
+
+      <button
+        id="heroNext"
+        class="hero-arrow hero-next"
+        onclick="changeHero(1)"
+        aria-label="Next">
+        ›
+      </button>
+
+      <div
+        id="heroDots"
+        class="hero-dots">
+      </div>
+
+    </div>
+
+
+    <section class="welcome">
+
+      <div class="welcome-inner">
+
+        <div class="welcome-badge">
+          WELCOME TO MEERU
+        </div>
+
+        <h2>
+          Good food. Great mood.
+        </h2>
+
+        <p>
+          Your favourite vegetarian fast food,
+          freshly prepared and delivered fast.
+          Choose your craving, place your order,
+          and let Meeru take care of the rest.
+        </p>
+
+        <div class="features">
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              🥬
+            </div>
+
+            <h3>
+              Fresh Ingredients
+            </h3>
+
+            <p>
+              Freshly prepared food with quality ingredients.
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              ⚡
+            </div>
+
+            <h3>
+              Fast Delivery
+            </h3>
+
+            <p>
+              Hot and delicious food delivered to your doorstep.
+            </p>
+
+          </div>
+
+
+          <div class="feature">
+
+            <div class="feature-icon">
+              ❤️
+            </div>
+
+            <h3>
+              Made With Love
+            </h3>
+
+            <p>
+              Every order is prepared to make your cravings happy.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <button
+          class="home-menu-cta"
+          onclick="showView('menu')">
+          Explore Our Menu →
+        </button>
+
+      </div>
+
+    </section>
+
+  </section>
+
+
+  <!-- =========================
+       MENU
+  ========================= -->
+
+  <section
+    id="menuView"
+    class="view">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <h1>
+          What are you craving? 🍔
+        </h1>
+
+        <p>
+          Pick your favourite and order it your way.
+        </p>
+
+      </div>
+
+      <div
+        id="productsContainer"
+        class="products-grid">
+
+        <div class="message">
+          Loading products...
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       PRODUCT DETAIL
+  ========================= -->
+
+  <section
+    id="productView"
+    class="view">
+
+    <div class="container">
+
+      <div id="productDetail"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CART
+  ========================= -->
+
+  <section
+    id="cartView"
+    class="view">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <h1>
+          🛒 Your Cart
+        </h1>
+
+        <p>
+          Review your items before placing the order.
+        </p>
+
+      </div>
+
+
+      <section class="panel">
+
+        <div class="cart-title">
+
+          <h2>
+            My Cart
+          </h2>
+
+          <span
+            id="cartCount"
+            class="cart-count">
+            0
+          </span>
+
+        </div>
+
+
+        <div id="cartContainer">
+
+          <div class="message">
+            Your cart is empty.
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       ORDERS
+  ========================= -->
+
+  <section
+    id="ordersView"
+    class="view">
+
+    <div class="container">
+
+      <div class="section-heading">
+
+        <div class="orders-heading-row">
+
+          <div>
+
+            <h1>
+              📦 My Orders
+            </h1>
+
+            <p>
+              Track your previous and current orders.
+            </p>
+
+          </div>
+
+
+          <button
+            id="userRefreshOrdersButton"
+            class="user-refresh-button"
+            onclick="refreshUserOrders()">
+
+            🔄 Refresh Orders
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <section class="panel">
+
+        <div id="ordersContainer">
+
+          <div class="message">
+            Loading orders...
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- =========================================================
+     FLOATING ORDER TRACKER
+========================================================= -->
+
+<div
+  id="floatingTrackOrder"
+  class="floating-track-order">
+
+  <div class="floating-track-icon">
+    📦
+  </div>
+
+
+  <div class="floating-track-info">
+
+    <strong id="floatingTrackTitle">
+      Order in Progress
+    </strong>
+
+    <span id="floatingTrackStatus">
+      Checking latest status...
+    </span>
+
+  </div>
+
+
+  <button
+    type="button"
+    class="floating-track-button"
+    onclick="openTrackOrders()">
+
+    Track Order
+    <span>→</span>
+
+  </button>
+
+</div>
+
+
+<!-- =========================================================
+     FLOATING CART
+========================================================= -->
+
+<div
+  id="floatingCart"
+  class="floating-cart">
+
+  <div class="floating-cart-info">
+
+    <strong id="floatingCartText">
+      0 items in cart
+    </strong>
+
+    <span id="floatingCartTotal">
+      ₹0
+    </span>
+
+  </div>
+
+
+  <button
+    class="floating-cart-button"
+    onclick="showView('cart')">
+
+    View Cart →
+
+  </button>
+
+</div>
+
+
+<!-- =========================================================
+     ORDER SUCCESS TOAST
+========================================================= -->
+
+<div
+  id="orderSuccessToast"
+  class="order-success-toast">
+
+  <div class="success-toast-icon">
+    🎉
+  </div>
+
+  <div class="success-toast-content">
+
+    <strong>
+      Order Delivered!
+    </strong>
+
+    <span>
+      Your Meeru order has arrived. Enjoy! ❤️
+    </span>
+
+  </div>
+
+</div>
+
+
+<footer>
+  © 2026 Meeru Fast Food. All rights reserved.
+</footer>
+
+
+<script>
+
+/* =========================================================
+   MEERU FAST FOOD — INDEX SCRIPT
+   USER APP
+========================================================= */
+
+const API_URL = "http://localhost:5000/api";
+
+let token = localStorage.getItem("token");
+
+let isAdminLogin = false;
+
+let allProducts = [];
+
+let heroProducts = [];
+
+let heroIndex = 0;
+
+let heroTimer = null;
+
+let selectedProduct = null;
+
+let detailQuantity = 1;
+
+
+/* =========================================================
+   USER ORDERS
+========================================================= */
+
+let userOrders = [];
+
+let userOrderPollingInterval = null;
+
+let latestUserOrder = null;
+
+let previousLiveOrderId = null;
+
+let previousLiveOrderStatus = null;
+
+let successToastTimer = null;
+
+
+/* =========================================================
+   LOCAL STORAGE KEYS
+========================================================= */
+
+const ACTIVE_ORDER_KEY =
+  "meeru_active_order_id";
+
+const DELIVERED_NOTIFICATION_KEY =
+  "meeru_delivered_notification_order_id";
+
+
+/* =========================================================
+   DOM
+========================================================= */
+
+const appHeader =
+  document.getElementById("appHeader");
+
+const authArea =
+  document.getElementById("authArea");
+
+const appMain =
+  document.getElementById("appMain");
+
+const loginSection =
+  document.getElementById("loginSection");
+
+const registerSection =
+  document.getElementById("registerSection");
+
+const productsContainer =
+  document.getElementById("productsContainer");
+
+const cartContainer =
+  document.getElementById("cartContainer");
+
+const cartCount =
+  document.getElementById("cartCount");
+
+const userName =
+  document.getElementById("userName");
+
+const loginMessage =
+  document.getElementById("loginMessage");
+
+const registerMessage =
+  document.getElementById("registerMessage");
+
+const ordersContainer =
+  document.getElementById("ordersContainer");
+
+
+/* =========================================================
+   DEBUG
+========================================================= */
+
+function debug(...args) {
+
+  console.log(
+    "[MEERU]",
+    ...args
+  );
+
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function esc(value) {
+
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+function img(value) {
+
+  if (
+    typeof value === "string" &&
+    /^https?:\/\//i.test(value)
+  ) {
+
+    return value;
+
+  }
+
+  return "https://via.placeholder.com/1200x800?text=Meeru+Fast+Food";
+
+}
+
+
+function headers() {
+
+  const result = {
+
+    "Content-Type":
+      "application/json"
+
+  };
+
+  if (token) {
+
+    result.Authorization =
+      `Bearer ${token}`;
+
+  }
+
+  return result;
+
+}
+
+
+async function getJson(response) {
+
+  try {
+
+    return await response.json();
+
+  } catch {
+
+    return {};
+
+  }
+
+}
+
+
+/* =========================================================
+   API REQUEST
+========================================================= */
+
+async function apiRequest(
+  url,
+  options = {}
+) {
+
+  debug(
+    options.method || "GET",
+    url,
+    options.body || ""
+  );
+
+  try {
+
+    const response =
+      await fetch(
+        url,
+        options
+      );
+
+    const data =
+      await getJson(
+        response
+      );
+
+    debug(
+      "STATUS:",
+      response.status,
+      data
+    );
+
+    return {
+
+      response,
+      data
+
+    };
+
+  } catch (error) {
+
+    console.error(
+      "[MEERU API ERROR]",
+      error
+    );
+
+    throw error;
+
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+function toggleMenu() {
+
+  const menu =
+    document.getElementById(
+      "mobileMenu"
+    );
+
+  if (menu) {
+
+    menu.classList.toggle(
+      "open"
+    );
+
+  }
+
+}
+
+
+function closeMenu() {
+
+  const menu =
+    document.getElementById(
+      "mobileMenu"
+    );
+
+  if (menu) {
+
+    menu.classList.remove(
+      "open"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   AUTH — LOGIN VIEW
+========================================================= */
+
+function showLogin() {
+
+  if (registerSection) {
+
+    registerSection.classList.add(
+      "hidden"
+    );
+
+  }
+
+  if (loginSection) {
+
+    loginSection.classList.remove(
+      "hidden"
+    );
+
+  }
+
+  isAdminLogin = false;
+
+  const title =
+    document.getElementById(
+      "loginTitle"
+    );
+
+  const subtitle =
+    document.getElementById(
+      "loginSubtitle"
+    );
+
+  if (title) {
+
+    title.textContent =
+      "Login";
+
+  }
+
+  if (subtitle) {
+
+    subtitle.textContent =
+      "Login to order your favourite food.";
+
+  }
+
+  const email =
+    document.getElementById(
+      "email"
+    );
+
+  const password =
+    document.getElementById(
+      "password"
+    );
+
+  if (email) {
+
+    email.value = "";
+
+  }
+
+  if (password) {
+
+    password.value = "";
+
+  }
+
+  if (loginMessage) {
+
+    loginMessage.textContent = "";
+
+  }
+
+}
+
+
+function showRegister() {
+
+  if (loginSection) {
+
+    loginSection.classList.add(
+      "hidden"
+    );
+
+  }
+
+  if (registerSection) {
+
+    registerSection.classList.remove(
+      "hidden"
+    );
+
+  }
+
+  if (registerMessage) {
+
+    registerMessage.textContent = "";
+
+  }
+
+}
+
+
+function showAdminLogin() {
+
+  if (registerSection) {
+
+    registerSection.classList.add(
+      "hidden"
+    );
+
+  }
+
+  if (loginSection) {
+
+    loginSection.classList.remove(
+      "hidden"
+    );
+
+  }
+
+  isAdminLogin = true;
+
+  const title =
+    document.getElementById(
+      "loginTitle"
+    );
+
+  const subtitle =
+    document.getElementById(
+      "loginSubtitle"
+    );
+
+  if (title) {
+
+    title.textContent =
+      "Admin Login";
+
+  }
+
+  if (subtitle) {
+
+    subtitle.textContent =
+      "Login using your admin credentials.";
+
+  }
+
+  const email =
+    document.getElementById(
+      "email"
+    );
+
+  const password =
+    document.getElementById(
+      "password"
+    );
+
+  if (email) {
+
+    email.value = "";
+
+  }
+
+  if (password) {
+
+    password.value = "";
+
+  }
+
+  if (loginMessage) {
+
+    loginMessage.textContent = "";
+
+  }
+
+}
+
+
+/* =========================================================
+   REGISTER
+========================================================= */
+
+async function registerUser() {
+
+  const name =
+    document
+      .getElementById("registerName")
+      ?.value
+      .trim();
+
+  const email =
+    document
+      .getElementById("registerEmail")
+      ?.value
+      .trim();
+
+  const password =
+    document
+      .getElementById("registerPassword")
+      ?.value
+      .trim();
+
+  const confirmPassword =
+    document
+      .getElementById("registerConfirmPassword")
+      ?.value
+      .trim();
+
+  const button =
+    document.getElementById(
+      "registerButton"
+    );
+
+  if (
+    !name ||
+    !email ||
+    !password ||
+    !confirmPassword
+  ) {
+
+    if (registerMessage) {
+
+      registerMessage.textContent =
+        "Please fill all fields.";
+
+    }
+
+    return;
+
+  }
+
+  if (password !== confirmPassword) {
+
+    if (registerMessage) {
+
+      registerMessage.textContent =
+        "Passwords do not match.";
+
+    }
+
+    return;
+
+  }
+
+  if (button) {
+
+    button.disabled = true;
+
+  }
+
+  if (registerMessage) {
+
+    registerMessage.textContent = "";
+
+  }
+
+  try {
+
+    const {
+      response,
+      data
+    } =
+      await apiRequest(
+        `${API_URL}/users/register`,
+        {
+
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+
+            name,
+            email,
+            password
+
+          })
+
+        }
+      );
+
+    if (!response.ok) {
+
+      if (registerMessage) {
+
+        registerMessage.textContent =
+          data.message ||
+          `Registration failed (${response.status}).`;
+
+      }
+
+      return;
+
+    }
+
+    alert(
+      "Registration successful! Please login."
+    );
+
+    [
+      "registerName",
+      "registerEmail",
+      "registerPassword",
+      "registerConfirmPassword"
+    ].forEach(id => {
+
+      const element =
+        document.getElementById(id);
+
+      if (element) {
+
+        element.value = "";
+
+      }
+
+    });
+
+    showLogin();
+
+  } catch (error) {
+
+    console.error(error);
+
+    if (registerMessage) {
+
+      registerMessage.textContent =
+        "Unable to connect to server.";
+
+    }
+
+  } finally {
+
+    if (button) {
+
+      button.disabled = false;
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+async function login() {
+
+  const email =
+    document
+      .getElementById("email")
+      ?.value
+      .trim();
+
+  const password =
+    document
+      .getElementById("password")
+      ?.value
+      .trim();
+
+  const button =
+    document.getElementById(
+      "loginButton"
+    );
+
+  if (!email || !password) {
+
+    if (loginMessage) {
+
+      loginMessage.textContent =
+        "Please enter email and password.";
+
+    }
+
+    return;
+
+  }
+
+  if (button) {
+
+    button.disabled = true;
+
+  }
+
+  if (loginMessage) {
+
+    loginMessage.textContent = "";
+
+  }
+
+  try {
+
+    const endpoint =
+      isAdminLogin
+        ? `${API_URL}/users/admin-login`
+        : `${API_URL}/users/login`;
+
+    const {
+      response,
+      data
+    } =
+      await apiRequest(
+        endpoint,
+        {
+
+          method: "POST",
+
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body: JSON.stringify({
+
+            email,
+            password
+
+          })
+
+        }
+      );
+
+    if (!response.ok) {
+
+      if (loginMessage) {
+
+        loginMessage.textContent =
+          data.message ||
+          `Login failed (${response.status}).`;
+
+      }
+
+      return;
+
+    }
+
+    if (!data.token) {
+
+      if (loginMessage) {
+
+        loginMessage.textContent =
+          "Server did not return a token.";
+
+      }
+
+      return;
+
+    }
+
+    const role =
+      data.user?.role;
+
+    if (
+      isAdminLogin &&
+      role !== "admin"
+    ) {
+
+      if (loginMessage) {
+
+        loginMessage.textContent =
+          "This account is not an admin account.";
+
+      }
+
+      return;
+
+    }
+
+    if (
+      !isAdminLogin &&
+      role !== "user"
+    ) {
+
+      if (loginMessage) {
+
+        loginMessage.textContent =
+          "Admin account must use Admin Login.";
+
+      }
+
+      return;
+
+    }
+
+    token =
+      data.token;
+
+    localStorage.setItem(
+      "token",
+      data.token
+    );
+
+    if (data.user) {
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify(data.user)
+      );
+
+    }
+
+    if (role === "admin") {
+
+      location.href =
+        "admin.html";
+
+      return;
+
+    }
+
+    showApp();
+
+  } catch (error) {
+
+    console.error(error);
+
+    if (loginMessage) {
+
+      loginMessage.textContent =
+        "Unable to connect to server.";
+
+    }
+
+  } finally {
+
+    if (button) {
+
+      button.disabled = false;
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   SHOW APP
+========================================================= */
+
+function showApp() {
+
+  authArea?.classList.add(
+    "hidden"
+  );
+
+  appHeader?.classList.remove(
+    "hidden"
+  );
+
+  appMain?.classList.remove(
+    "hidden"
+  );
+
+  let user = null;
+
+  try {
+
+    user =
+      JSON.parse(
+        localStorage.getItem(
+          "user"
+        ) || "null"
+      );
+
+  } catch {
+
+    user = null;
+
+  }
+
+  if (userName) {
+
+    userName.textContent =
+      `Hi, ${user?.name || "User"}`;
+
+  }
+
+  const adminButton =
+    document.getElementById(
+      "adminButton"
+    );
+
+  const mobileAdminButton =
+    document.getElementById(
+      "mobileAdminButton"
+    );
+
+  const isAdmin =
+    user?.role === "admin";
+
+  adminButton?.classList.toggle(
+    "hidden",
+    !isAdmin
+  );
+
+  mobileAdminButton?.classList.toggle(
+    "hidden",
+    !isAdmin
+  );
+
+  showView("home");
+
+  loadProducts();
+
+  loadCart();
+
+  loadOrders();
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout() {
+
+  clearOrderPolling();
+
+  localStorage.removeItem(
+    "token"
+  );
+
+  localStorage.removeItem(
+    "user"
+  );
+
+  localStorage.removeItem(
+    ACTIVE_ORDER_KEY
+  );
+
+  token = null;
+
+  location.reload();
+
+}
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+function goToAdmin() {
+
+  let user = null;
+
+  try {
+
+    user =
+      JSON.parse(
+        localStorage.getItem(
+          "user"
+        ) || "null"
+      );
+
+  } catch {
+
+    user = null;
+
+  }
+
+  if (user?.role !== "admin") {
+
+    alert(
+      "Access denied. Admin only."
+    );
+
+    return;
+
+  }
+
+  location.href =
+    "admin.html";
+
+}
+
+
+/* =========================================================
+   VIEW NAVIGATION
+========================================================= */
+
+function showView(view) {
+
+  if (!token) {
+
+    showLogin();
+
+    return;
+
+  }
+
+  document
+    .querySelectorAll(".view")
+    .forEach(element => {
+
+      element.classList.remove(
+        "active"
+      );
+
+    });
+
+  const element =
+    document.getElementById(
+      `${view}View`
+    );
+
+  if (element) {
+
+    element.classList.add(
+      "active"
+    );
+
+  }
+
+  [
+    "home",
+    "menu",
+    "cart",
+    "orders"
+  ].forEach(name => {
+
+    const button =
+      document.getElementById(
+        `${name}Nav`
+      );
+
+    if (button) {
+
+      button.classList.toggle(
+        "active",
+        name === view
+      );
+
+    }
+
+  });
+
+  closeMenu();
+
+  window.scrollTo({
+
+    top: 0,
+
+    behavior: "smooth"
+
+  });
+
+  if (view === "menu") {
+
+    loadProducts();
+
+  }
+
+  if (view === "cart") {
+
+    loadCart();
+
+  }
+
+  if (view === "orders") {
+
+    loadOrders();
+
+  }
+
+}
+
+
+/* =========================================================
+   PRODUCTS
+========================================================= */
+
+async function loadProducts() {
+
+  if (productsContainer) {
+
+    productsContainer.innerHTML = `
+      <div class="message">
+        Loading products...
+      </div>
+    `;
+
+  }
+
+  try {
+
+    const {
+      response,
+      data
+    } =
+      await apiRequest(
+        `${API_URL}/products`,
+        {
+
+          method: "GET",
+
+          headers: headers()
+
+        }
+      );
+
+    if (!response.ok) {
+
+      throw new Error(
+        data.message ||
+        `Products failed (${response.status})`
+      );
+
+    }
+
+    allProducts =
+      Array.isArray(data.products)
+        ? data.products
+        : Array.isArray(data)
+          ? data
+          : [];
+
+    debug(
+      "PRODUCTS:",
+      allProducts
+    );
+
+    renderProducts(
+      allProducts
+    );
+
+    setupHero(
+      allProducts
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Products error:",
+      error
+    );
+
+    if (productsContainer) {
+
+      productsContainer.innerHTML = `
+        <div class="message">
+
+          Unable to load products.
+
+          <br>
+
+          <small>
+            ${esc(error.message)}
+          </small>
+
+        </div>
+      `;
+
+    }
+
+    renderHeroFallback();
+
+  }
+
+}
+
+
+/* =========================================================
+   PRODUCT HELPERS
+========================================================= */
+
+function normalizeCategory(category) {
+
+  return String(
+    category || "Other"
+  )
+    .trim()
+    .toLowerCase();
+
+}
+
+
+function categoryTitle(category) {
+
+  const map = {
+
+    "vadapav":
+      "🌶️ VADAPAV",
+
+    "sandwich":
+      "🥪 SANDWICHES",
+
+    "sandwiches":
+      "🥪 SANDWICHES",
+
+    "pizza":
+      "🍕 PIZZA",
+
+    "burger":
+      "🍔 BURGER",
+
+    "burgers":
+      "🍔 BURGER",
+
+    "french fries":
+      "🍟 FRENCH FRIES",
+
+    "fries":
+      "🍟 FRENCH FRIES",
+
+    "cold coffee":
+      "🥤 COLD COFFEE",
+
+    "cold coffees":
+      "🥤 COLD COFFEE",
+
+    "thick shake":
+      "🥛 THICK SHAKE",
+
+    "thick shakes":
+      "🥛 THICK SHAKE",
+
+    "maggi":
+      "🍜 MAGGI",
+
+    "pasta":
+      "🍝 PASTA",
+
+    "maska bun":
+      "🍞 MASKA BUN",
+
+    "fruit shake":
+      "🥤 FRUIT SHAKE",
+
+    "fruit shakes":
+      "🥤 FRUIT SHAKE",
+
+    "mocktail":
+      "🍹 MOCKTAIL",
+
+    "mocktails":
+      "🍹 MOCKTAIL",
+
+    "extra":
+      "➕ EXTRA / ADD-ONS",
+
+    "extras":
+      "➕ EXTRA / ADD-ONS",
+
+    "add-ons":
+      "➕ EXTRA / ADD-ONS",
+
+    "addons":
+      "➕ EXTRA / ADD-ONS"
+
+  };
+
+  const key =
+    normalizeCategory(category);
+
+  if (map[key]) {
+
+    return map[key];
+
+  }
+
+  return `🍽️ ${String(category || "OTHER").toUpperCase()}`;
+
+}
+
+
+function getCategoryOrder(category) {
+
+  const order = [
+
+    "vadapav",
+    "sandwich",
+    "sandwiches",
+    "pizza",
+    "burger",
+    "burgers",
+    "french fries",
+    "fries",
+    "cold coffee",
+    "cold coffees",
+    "thick shake",
+    "thick shakes",
+    "maggi",
+    "pasta",
+    "maska bun",
+    "fruit shake",
+    "fruit shakes",
+    "mocktail",
+    "mocktails",
+    "extra",
+    "extras",
+    "add-ons",
+    "addons"
+
+  ];
+
+  const index =
+    order.indexOf(
+      normalizeCategory(category)
+    );
+
+  return index === -1
+    ? 999
+    : index;
+
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+function createProductCard(
+  product
+) {
+
+  const id =
+    String(
+      product?._id ||
+      product?.id ||
+      ""
+    );
+
+  const available =
+    product.isAvailable !== false &&
+    product.available !== false;
+
+  const category =
+    product.category ||
+    "Food";
+
+  const price =
+    Number(product.price) || 0;
+
+  const description =
+    product.description ||
+    product.desc ||
+    "Delicious vegetarian food from Meeru Fast Food.";
+
+  return `
+
+    <article
+      class="
+        product-card
+        ${!available ? "product-unavailable" : ""}
+      "
+    >
+
+      <div class="product-image-wrap">
+
+        <img
+          class="product-image"
+          src="${img(product.image)}"
+          alt="${esc(product.name)}"
+          loading="lazy"
+          onerror="
+            this.onerror=null;
+            this.src='https://via.placeholder.com/700x500?text=Food'
+          "
+        >
+
+      </div>
+
+
+      <div class="product-info">
+
+        <span class="product-category">
+
+          ${esc(category)}
+
+        </span>
+
+
+        <div class="product-name">
+
+          ${esc(product.name)}
+
+        </div>
+
+
+        <div class="product-description">
+
+          ${esc(description)}
+
+        </div>
+
+
+        <div class="product-bottom">
+
+          <div class="product-price">
+
+            ₹${price}
+
+          </div>
+
+
+          ${
+            available
+
+              ? `
+
+                <button
+                  type="button"
+                  class="add-button"
+                  onclick="addToCart('${id}')"
+                >
+
+                  + ADD
+
+                </button>
+
+              `
+
+              : `
+
+                <span
+                  style="
+                    color:#b22;
+                    font-size:12px;
+                    font-weight:800;
+                  "
+                >
+
+                  Unavailable
+
+                </span>
+
+              `
+          }
+
+        </div>
+
+
+        <button
+          type="button"
+          class="details-button"
+          onclick="openProduct('${id}')"
+        >
+
+          View Item →
+
+        </button>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+/* =========================================================
+   RENDER PRODUCTS
+   CATEGORY BASED MENU
+========================================================= */
+
+function renderProducts(products) {
+
+  if (!productsContainer) {
+
+    return;
+
+  }
+
+
+  if (!Array.isArray(products) || !products.length) {
+
+    productsContainer.innerHTML = `
+
+      <div class="message">
+
+        No products available right now.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  const availableProducts =
+    products.filter(
+      product =>
+        product.isAvailable !== false &&
+        product.available !== false
+    );
+
+
+  if (!availableProducts.length) {
+
+    productsContainer.innerHTML = `
+
+      <div class="message">
+
+        No products available right now.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  /* =======================================================
+     CATEGORY LIST
+  ======================================================= */
+
+  const categoryMap = new Map();
+
+  availableProducts.forEach(product => {
+
+    const key =
+      normalizeCategory(
+        product.category
+      );
+
+    if (!categoryMap.has(key)) {
+
+      categoryMap.set(
+        key,
+        {
+          original:
+            product.category ||
+            "Other",
+
+          products: []
+
+        }
+      );
+
+    }
+
+    categoryMap
+      .get(key)
+      .products
+      .push(product);
+
+  });
+
+
+  const categories =
+    Array.from(
+      categoryMap.entries()
+    )
+    .sort(
+      (a, b) => {
+
+        const orderA =
+          getCategoryOrder(a[0]);
+
+        const orderB =
+          getCategoryOrder(b[0]);
+
+        if (orderA !== orderB) {
+
+          return orderA - orderB;
+
+        }
+
+        return String(
+          a[1].original
+        ).localeCompare(
+          String(
+            b[1].original
+          )
+        );
+
+      }
+    );
+
+
+  let html = "";
+
+
+  /* =======================================================
+     MENU CATEGORY NAVIGATION
+  ======================================================= */
+
+  html += `
+
+    <div
+      class="menu-category-nav"
+      id="menuCategoryNav"
+    >
+
+      <button
+        type="button"
+        class="menu-category-btn active"
+        onclick="
+          scrollToMenuTop(this)
+        "
+      >
+
+        All
+
+      </button>
+
+  `;
+
+
+  categories.forEach(
+    ([key, data]) => {
+
+      const sectionId =
+        `category-${key
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "")}`;
+
+      html += `
+
+        <button
+          type="button"
+          class="menu-category-btn"
+          onclick="
+            scrollToMenuSection(
+              '${sectionId}',
+              this
+            )
+          "
+        >
+
+          ${esc(
+            categoryTitle(
+              data.original
+            )
+          )}
+
+        </button>
+
+      `;
+
+    }
+  );
+
+
+  html += `
+
+    </div>
+
+  `;
+
+
+  /* =======================================================
+     CATEGORY SECTIONS
+  ======================================================= */
+
+  categories.forEach(
+    ([key, data]) => {
+
+      const sectionId =
+        `category-${key
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-|-$/g, "")}`;
+
+
+      html += `
+
+        <section
+          id="${sectionId}"
+          class="menu-section category-section"
+        >
+
+          <div class="menu-section-heading">
+
+            <div>
+
+              <span class="menu-section-kicker">
+
+                FRESHLY PREPARED
+
+              </span>
+
+              <h2>
+
+                ${esc(
+                  categoryTitle(
+                    data.original
+                  )
+                )}
+
+              </h2>
+
+            </div>
+
+
+            <span class="category-item-count">
+
+              ${data.products.length}
+              item${
+                data.products.length === 1
+                  ? ""
+                  : "s"
+              }
+
+            </span>
+
+          </div>
+
+
+          <div class="products-grid">
+
+            ${data.products
+              .map(
+                product =>
+                  createProductCard(
+                    product
+                  )
+              )
+              .join("")}
+
+          </div>
+
+        </section>
+
+      `;
+
+    }
+  );
+
+
+  productsContainer.innerHTML =
+    html;
+
+}
+
+
+/* =========================================================
+   MENU CATEGORY SCROLL
+========================================================= */
+
+function scrollToMenuTop(button) {
+
+  document
+    .querySelectorAll(
+      ".menu-category-btn"
+    )
+    .forEach(
+      element =>
+        element.classList.remove(
+          "active"
+        )
+    );
+
+
+  if (button) {
+
+    button.classList.add(
+      "active"
+    );
+
+  }
+
+
+  const menuView =
+    document.getElementById(
+      "menuView"
+    );
+
+  if (menuView) {
+
+    const header =
+      document.getElementById(
+        "appHeader"
+      );
+
+    const headerHeight =
+      header
+        ? header.offsetHeight
+        : 0;
+
+    const top =
+      menuView.getBoundingClientRect().top +
+      window.pageYOffset -
+      headerHeight -
+      10;
+
+    window.scrollTo({
+
+      top,
+
+      behavior: "smooth"
+
+    });
+
+  }
+
+}
+
+
+function scrollToMenuSection(
+  sectionId,
+  button
+) {
+
+  const section =
+    document.getElementById(
+      sectionId
+    );
+
+  if (!section) {
+
+    return;
+
+  }
+
+
+  document
+    .querySelectorAll(
+      ".menu-category-btn"
+    )
+    .forEach(
+      element =>
+        element.classList.remove(
+          "active"
+        )
+    );
+
+
+  if (button) {
+
+    button.classList.add(
+      "active"
+    );
+
+  }
+
+
+  const header =
+    document.getElementById(
+      "appHeader"
+    );
+
+
+  const headerHeight =
+    header
+      ? header.offsetHeight
+      : 0;
+
+
+  const top =
+    section.getBoundingClientRect().top +
+    window.pageYOffset -
+    headerHeight -
+    15;
+
+
+  window.scrollTo({
+
+    top,
+
+    behavior: "smooth"
+
+  });
+
+}
+
+
+/* =========================================================
+   PRODUCT DETAIL
+========================================================= */
+
+function openProduct(id) {
+
+  const product =
+    allProducts.find(
+      item =>
+        String(
+          item._id ||
+          item.id
+        ) ===
+        String(id)
+    );
+
+  if (!product) {
+
+    console.error(
+      "Product not found:",
+      id
+    );
+
+    return;
+
+  }
+
+
+  selectedProduct =
+    product;
+
+  detailQuantity = 1;
+
+
+  const detail =
+    document.getElementById(
+      "productDetail"
+    );
+
+  if (!detail) {
+
+    return;
+
+  }
+
+
+  const available =
+    product.isAvailable !== false &&
+    product.available !== false;
+
+
+  /* =======================================================
+     SUGGESTED PRODUCTS
+     Same category first
+  ======================================================= */
+
+  let suggestions =
+    allProducts.filter(
+      item =>
+        String(
+          item._id ||
+          item.id
+        ) !==
+        String(
+          product._id ||
+          product.id
+        ) &&
+        item.isAvailable !== false &&
+        item.available !== false
+    );
+
+
+  const sameCategory =
+    suggestions.filter(
+      item =>
+        normalizeCategory(
+          item.category
+        ) ===
+        normalizeCategory(
+          product.category
+        )
+    );
+
+
+  const otherCategory =
+    suggestions.filter(
+      item =>
+        normalizeCategory(
+          item.category
+        ) !==
+        normalizeCategory(
+          product.category
+        )
+    );
+
+
+  suggestions = [
+    ...sameCategory,
+    ...otherCategory
+  ].slice(0, 4);
+
+
+  /* =======================================================
+     SUGGESTION HTML
+  ======================================================= */
+
+  let suggestionsHTML = "";
+
+
+  if (suggestions.length > 0) {
+
+    suggestionsHTML = `
+
+      <section
+        class="suggested-food-section"
+      >
+
+        <div
+          class="suggested-food-heading"
+        >
+
+          <span
+            class="suggested-eyebrow"
+          >
+
+            🍴 COMPLETE YOUR ORDER
+
+          </span>
+
+
+          <h2>
+
+            Want something with this?
+
+          </h2>
+
+
+          <p>
+
+            Add another favourite to your order.
+
+          </p>
+
+        </div>
+
+
+        <div
+          class="suggested-food-grid"
+        >
+
+          ${suggestions
+            .map(item => {
+
+              const itemId =
+                String(
+                  item._id ||
+                  item.id ||
+                  ""
+                );
+
+
+              return `
+
+                <article
+                  class="suggested-food-card"
+                >
+
+                  <div
+                    class="suggested-food-image-wrap"
+                  >
+
+                    <img
+                      src="${img(item.image)}"
+                      alt="${esc(item.name)}"
+                      loading="lazy"
+                      onerror="
+                        this.onerror=null;
+                        this.src='https://via.placeholder.com/500x400?text=Food'
+                      "
+                    >
+
+                  </div>
+
+
+                  <div
+                    class="suggested-food-info"
+                  >
+
+                    <span
+                      class="suggested-food-category"
+                    >
+
+                      ${esc(
+                        item.category ||
+                        "Food"
+                      )}
+
+                    </span>
+
+
+                    <h3>
+
+                      ${esc(
+                        item.name
+                      )}
+
+                    </h3>
+
+
+                    <div
+                      class="suggested-food-bottom"
+                    >
+
+                      <strong>
+
+                        ₹${
+                          Number(
+                            item.price
+                          ) || 0
+                        }
+
+                      </strong>
+
+
+                      <button
+                        type="button"
+                        class="suggested-add-btn"
+                        onclick="
+                          addSuggestedToCart(
+                            '${itemId}'
+                          )
+                        "
+                      >
+
+                        + ADD
+
+                      </button>
+
+                    </div>
+
+                  </div>
+
+                </article>
+
+              `;
+
+            })
+            .join("")}
+
+        </div>
+
+      </section>
+
+    `;
+
+  }
+
+
+  /* =======================================================
+     PRODUCT DETAIL HTML
+  ======================================================= */
+
+  detail.innerHTML = `
+
+    <div class="detail-card">
+
+      <img
+        class="detail-image"
+        src="${img(product.image)}"
+        alt="${esc(product.name)}"
+        onerror="
+          this.onerror=null;
+          this.src='https://via.placeholder.com/900x700?text=Food'
+        "
+      >
+
+
+      <div class="detail-info">
+
+        <button
+          type="button"
+          class="back-button"
+          onclick="showView('menu')"
+        >
+
+          ← Back to Menu
+
+        </button>
+
+
+        <div class="detail-category">
+
+          ${esc(
+            product.category ||
+            "Food"
+          )}
+
+        </div>
+
+
+        <h1>
+
+          ${esc(
+            product.name
+          )}
+
+        </h1>
+
+
+        <p class="detail-description">
+
+          ${esc(
+            product.description ||
+            product.desc ||
+            "Delicious food from Meeru Fast Food."
+          )}
+
+        </p>
+
+
+        <div class="detail-price">
+
+          ₹${
+            Number(
+              product.price
+            ) || 0
+          }
+
+        </div>
+
+
+        ${
+          available
+
+            ? `
+
+              <div class="detail-action">
+
+                <div class="detail-qty">
+
+                  <button
+                    type="button"
+                    onclick="
+                      changeDetailQty(-1)
+                    "
+                  >
+
+                    −
+
+                  </button>
+
+
+                  <span id="detailQty">
+
+                    1
+
+                  </span>
+
+
+                  <button
+                    type="button"
+                    onclick="
+                      changeDetailQty(1)
+                    "
+                  >
+
+                    +
+
+                  </button>
+
+                </div>
+
+
+                <button
+                  type="button"
+                  class="detail-add"
+                  onclick="
+                    addDetailToCart()
+                  "
+                >
+
+                  Add to Cart
+
+                </button>
+
+              </div>
+
+            `
+
+            : `
+
+              <div
+                style="
+                  color:#b22;
+                  font-weight:800;
+                "
+              >
+
+                Currently unavailable
+
+              </div>
+
+            `
+        }
+
+      </div>
+
+    </div>
+
+
+    ${suggestionsHTML}
+
+  `;
+
+
+  showView(
+    "product"
+  );
+
+}
+
+
+/* =========================================================
+   ADD SUGGESTED PRODUCT TO CART
+========================================================= */
+
+async function addSuggestedToCart(
+  productId
+) {
+
+  if (!productId) {
+
+    return;
+
+  }
+
+  await addToCart(
+    productId,
+    1
+  );
+
+}
+
+
+/* =========================================================
+   DETAIL QUANTITY
+========================================================= */
+
+function changeDetailQty(delta) {
+
+  detailQuantity =
+    Math.max(
+      1,
+      detailQuantity + delta
+    );
+
+
+  const element =
+    document.getElementById(
+      "detailQty"
+    );
+
+
+  if (element) {
+
+    element.textContent =
+      detailQuantity;
+
+  }
+
+}
+
+
+/* =========================================================
+   ADD DETAIL TO CART
+========================================================= */
+
+async function addDetailToCart() {
+
+  if (!selectedProduct) {
+
+    alert(
+      "Product not selected."
+    );
+
+    return;
+
+  }
+
+
+  const id =
+    selectedProduct._id ||
+    selectedProduct.id;
+
+
+  await addToCart(
+    id,
+    detailQuantity
+  );
+
+}
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+async function addToCart(
+  id,
+  quantity = 1
+) {
+
+  debug(
+    "ADD TO CART:",
+    id,
+    quantity
+  );
+
+
+  if (!token) {
+
+    alert(
+      "Please login first."
+    );
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  if (!id) {
+
+    alert(
+      "Invalid product."
+    );
+
+    return;
+
+  }
+
+
+  const finalQuantity =
+    Number(quantity) || 1;
+
+
+  try {
+
+    const {
+      response,
+      data
+    } =
+      await apiRequest(
+        `${API_URL}/cart`,
+        {
+
+          method: "POST",
+
+          headers: headers(),
+
+          body: JSON.stringify({
+
+            product:
+              String(id),
+
+            quantity:
+              finalQuantity
+
+          })
+
+        }
+      );
+
+
+    if (!response.ok) {
+
+      console.error(
+        "ADD CART BACKEND ERROR:",
+        data
+      );
+
+      alert(
+        data.message ||
+        data.error ||
+        `Unable to add item (${response.status}).`
+      );
+
+      return;
+
+    }
+
+
+    debug(
+      "CART UPDATED:",
+      data
+    );
+
+
+    if (data.cart) {
+
+      renderCart(
+        data.cart
+      );
+
+    } else if (data.items) {
+
+      renderCart(
+        data
+      );
+
+    } else {
+
+      await loadCart();
+
+    }
+
+
+    const product =
+      allProducts.find(
+        item =>
+          String(
+            item._id ||
+            item.id
+          ) ===
+          String(id)
+      );
+
+
+    alert(
+      `${product?.name || "Item"} added to cart! 🛒`
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "ADD TO CART ERROR:",
+      error
+    );
+
+    alert(
+      `Unable to connect to server.
+
+${error.message || ""}`
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   LOAD CART
+========================================================= */
+
+async function loadCart() {
+
+  if (!cartContainer) {
+
+    return;
+
+  }
+
+
+  try {
+
+    const {
+      response,
+      data
+    } =
+      await apiRequest(
+        `${API_URL}/cart`,
+        {
+
+          method: "GET",
+
+          headers: headers()
+
+        }
+      );
+
+
+    if (!response.ok) {
+
+      cartContainer.innerHTML = `
+
+        <div class="message">
+
+          Unable to load cart.
+
+          <br>
+
+          <small>
+
+            ${esc(
+              data.message ||
+              data.error ||
+              `Error ${response.status}`
+            )}
+
+          </small>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    debug(
+      "CART:",
+      data
+    );
+
+
+    renderCart(
+      data.cart ||
+      data
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "LOAD CART ERROR:",
+      error
+    );
+
+
+    cartContainer.innerHTML = `
+
+      <div class="message">
+
+        Unable to connect to server.
+
+        <br>
+
+        <small>
+
+          ${esc(
+            error.message
+          )}
+
+        </small>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER CART
+========================================================= */
+
+function renderCart(cart) {
+
+  if (!cartContainer) {
+
+    return;
+
+  }
+
+
+  if (
+    !cart ||
+    !Array.isArray(cart.items) ||
+    !cart.items.length
+  ) {
+
+    if (cartCount) {
+
+      cartCount.textContent =
+        "0";
+
+    }
+
+
+    cartContainer.innerHTML = `
+
+      <div class="message">
+
+        Your cart is empty.
+
+        <br>
+        <br>
+
+        <button
+          type="button"
+          class="home-menu-cta"
+          onclick="showView('menu')"
+        >
+
+          Explore Menu →
+
+        </button>
+
+      </div>
+
+    `;
+
+
+    document
+      .getElementById(
+        "floatingCart"
+      )
+      ?.classList.remove(
+        "visible"
+      );
+
+
+    return;
+
+  }
+
+
+  let total = 0;
+
+  let quantity = 0;
+
+
+  cart.items.forEach(item => {
+
+    const price =
+      Number(item.price) ||
+      Number(
+        item.product?.price
+      ) ||
+      0;
+
+
+    const q =
+      Number(item.quantity) ||
+      0;
+
+
+    total +=
+      price * q;
+
+
+    quantity +=
+      q;
+
+  });
+
+
+  if (cartCount) {
+
+    cartCount.textContent =
+      quantity;
+
+  }
+
+
+  const floating =
+    document.getElementById(
+      "floatingCart"
+    );
+
+
+  if (floating) {
+
+    const floatingText =
+      document.getElementById(
+        "floatingCartText"
+      );
+
+
+    const floatingTotal =
+      document.getElementById(
+        "floatingCartTotal"
+      );
+
+
+    if (floatingText) {
+
+      floatingText.textContent =
+        `${quantity} item${
+          quantity === 1
+            ? ""
+            : "s"
+        } in cart`;
+
+    }
+
+
+    if (floatingTotal) {
+
+      floatingTotal.textContent =
+        `₹${total}`;
+
+    }
+
+
+    floating.classList.add(
+      "visible"
+    );
+
+  }
+
+
+  cartContainer.innerHTML =
+    cart.items
+      .map(item => {
+
+        const id =
+          item.product?._id ||
+          item.product?.id ||
+          item.product ||
+          item._id ||
+          item.id ||
+          "";
+
+
+        const q =
+          Number(
+            item.quantity
+          ) || 1;
+
+
+        const price =
+          Number(item.price) ||
+          Number(
+            item.product?.price
+          ) ||
+          0;
+
+
+        const name =
+          item.product?.name ||
+          item.name ||
+          "Product";
+
+
+        return `
+
+          <div class="cart-item">
+
+            <div class="cart-item-info">
+
+              <div class="cart-item-name">
+
+                ${esc(name)}
+
+              </div>
+
+
+              <div class="cart-item-price">
+
+                ₹${price} × ${q}
+
+              </div>
+
+            </div>
+
+
+            <div class="quantity-controls">
+
+              <button
+                type="button"
+                class="quantity-button"
+                onclick="
+                  updateQuantity(
+                    '${esc(id)}',
+                    ${q - 1}
+                  )
+                "
+                ${q <= 1 ? "disabled" : ""}
+              >
+
+                −
+
+              </button>
+
+
+              <span class="quantity-number">
+
+                ${q}
+
+              </span>
+
+
+              <button
+                type="button"
+                class="quantity-button"
+                onclick="
+                  updateQuantity(
+                    '${esc(id)}',
+                    ${q + 1}
+                  )
+                "
+              >
+
+                +
+
+              </button>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="remove-button"
+              onclick="
+                removeFromCart(
+                  '${esc(id)}'
+                )
+              "
+            >
+
+              Remove
+
+            </button>
+
+          </div>
+
+        `;
+
+      })
+      .join("");
+
+
+  cartContainer.innerHTML += `
+
+    <div class="cart-total">
+
+      Total: ₹${total}
+
+    </div>
+
+
+    <div class="checkout">
+
+      <h3>
+
+        Delivery Address
+
+      </h3>
+
+
+      <input
+        id="deliveryAddress"
+        class="address-input"
+        type="text"
+        placeholder="Enter delivery address"
+        autocomplete="street-address"
+      >
+
+
+      <button
+        type="button"
+        id="placeOrderButton"
+        class="order-button"
+        onclick="placeOrder()"
+      >
+
+        Place Order
+
+      </button>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   UPDATE QUANTITY
+========================================================= */
+
+async function updateQuantity(
+  id,
+  quantity
+) {
+
+  if (quantity < 1) {
+
+    return;
+
+  }
+
+
+  try {
+
+    const {
+      response,
+      data
+    } =
+      await apiRequest(
+        `${API_URL}/cart/${encodeURIComponent(id)}`,
+        {
+
+          method: "PUT",
+
+          headers: headers(),
+
+          body: JSON.stringify({
+
+            quantity:
+              Number(quantity)
+
+          })
+
+        }
+      );
+
+
+    if (!response.ok) {
+
+      alert(
+        data.message ||
+        data.error ||
+        `Unable to update cart (${response.status}).`
+      );
+
+      return;
+
+    }
+
+
+    renderCart(
+      data.cart ||
+      data
+    );
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert(
+      "Unable to connect to server."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   REMOVE CART ITEM
+========================================================= */
+
+async function removeFromCart(id) {
+
+  try {
+
+    const {
+      response,
+      data
+    } =
+      await apiRequest(
+        `${API_URL}/cart/${encodeURIComponent(id)}`,
+        {
+
+          method: "DELETE",
+
+          headers: headers()
+
+        }
+      );
+
+
+    if (!response.ok) {
+
+      alert(
+        data.message ||
+        data.error ||
+        `Unable to remove item (${response.status}).`
+      );
+
+      return;
+
+    }
+
+
+    renderCart(
+      data.cart ||
+      data
+    );
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert(
+      "Unable to connect to server."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   PLACE ORDER
+========================================================= */
+
+async function placeOrder() {
+
+  const input =
+    document.getElementById(
+      "deliveryAddress"
+    );
+
+
+  const button =
+    document.getElementById(
+      "placeOrderButton"
+    );
+
+
+  if (!input) {
+
+    return;
+
+  }
+
+
+  const address =
+    input.value.trim();
+
+
+  if (!address) {
+
+    alert(
+      "Please enter delivery address."
+    );
+
+    return;
+
+  }
+
+
+  if (button) {
+
+    button.disabled = true;
+
+    button.textContent =
+      "Placing Order...";
+
+  }
+
+
+  try {
+
+    const {
+      response,
+      data
+    } =
+      await apiRequest(
+        `${API_URL}/orders`,
+        {
+
+          method: "POST",
+
+          headers: headers(),
+
+          body: JSON.stringify({
+
+            deliveryAddress:
+              address
+
+          })
+
+        }
+      );
+
+
+    if (!response.ok) {
+
+      alert(
+        data.message ||
+        data.error ||
+        `Unable to place order (${response.status}).`
+      );
+
+      return;
+
+    }
+
+
+    const createdOrder =
+      data.order || data;
+
+
+    const orderId =
+      createdOrder?._id ||
+      createdOrder?.id ||
+      data.order?._id ||
+      data.order?.id;
+
+
+    if (orderId) {
+
+      localStorage.setItem(
+        ACTIVE_ORDER_KEY,
+        String(orderId)
+      );
+
+
+      previousLiveOrderId =
+        String(orderId);
+
+
+      previousLiveOrderStatus =
+        normalizeOrderStatus(
+          createdOrder.status ||
+          "Pending"
+        );
+
+    }
+
+
+    await loadCart();
+
+
+    await loadOrders();
+
+
+    showView(
+      "orders"
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      error
+    );
+
+    alert(
+      "Unable to connect to server."
+    );
+
+  } finally {
+
+    if (button) {
+
+      button.disabled = false;
+
+      button.textContent =
+        "Place Order";
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   ORDER STATUS HELPERS
+========================================================= */
+
+function normalizeOrderStatus(status) {
+
+  return String(
+    status || "Pending"
+  )
+    .trim()
+    .toLowerCase();
+
+}
+
+
+function getOrderStatusInfo(status) {
+
+  const normalized =
+    normalizeOrderStatus(
+      status
+    );
+
+
+  const map = {
+
+    "pending": {
+
+      emoji: "⏳",
+
+      title: "Pending"
+
+    },
+
+    "confirmed": {
+
+      emoji: "✅",
+
+      title: "Confirmed"
+
+    },
+
+    "preparing": {
+
+      emoji: "👨‍🍳",
+
+      title: "Preparing"
+
+    },
+
+    "out for delivery": {
+
+      emoji: "🛵",
+
+      title: "Out for Delivery"
+
+    },
+
+    "delivered": {
+
+      emoji: "🎉",
+
+      title: "Delivered"
+
+    },
+
+    "cancelled": {
+
+      emoji: "❌",
+
+      title: "Cancelled"
+
+    },
+
+    "canceled": {
+
+      emoji: "❌",
+
+      title: "Cancelled"
+
+    }
+
+  };
+
+
+  return (
+    map[normalized] || {
+
+      emoji: "📦",
+
+      title:
+        status ||
+        "Pending"
+
+    }
+  );
+
+}
+
+
+/* =========================================================
+   LIVE ORDER CHECK
+   ONLY THESE 4 STATUSES ARE LIVE
+========================================================= */
+
+function isUserLive(status) {
+
+  const normalized =
+    normalizeOrderStatus(status);
+
+
+  return [
+
+    "pending",
+    "confirmed",
+    "preparing",
+    "out for delivery"
+
+  ].includes(
+    normalized
+  );
+
+}
+
+
+/* =========================================================
+   GET ORDER ID
+========================================================= */
+
+function getOrderId(order) {
+
+  return String(
+    order?._id ||
+    order?.id ||
+    ""
+  );
+
+}
+
+
+/* =========================================================
+   FIND LATEST ORDER
+========================================================= */
+
+function getLatestOrder(orders) {
+
+  if (
+    !Array.isArray(orders) ||
+    !orders.length
+  ) {
+
+    return null;
+
+  }
+
+
+  const sorted =
+    [...orders].sort(
+      (a, b) =>
+        new Date(
+          b.createdAt || 0
+        ) -
+        new Date(
+          a.createdAt || 0
+        )
+    );
+
+
+  return sorted[0] || null;
+
+}
+
+
+/* =========================================================
+   CREATE USER ORDER CARD
+========================================================= */
+
+function createUserOrderCard(
+  order,
+  isLive = false
+) {
+
+  const date =
+    order.createdAt
+      ? new Date(
+          order.createdAt
+        ).toLocaleDateString(
+          "en-IN",
+          {
+
+            day: "2-digit",
+
+            month: "short",
+
+            year: "numeric"
+
+          }
+        )
+      : "Date unavailable";
+
+
+  const status =
+    order.status ||
+    "Pending";
+
+
+  const info =
+    getOrderStatusInfo(
+      status
+    );
+
+
+  const normalizedStatus =
+    normalizeOrderStatus(
+      status
+    );
+
+
+  let statusClass =
+    "status-" +
+    normalizedStatus
+      .replace(/\s+/g, "-");
+
+
+  if (
+    normalizedStatus ===
+    "out for delivery"
+  ) {
+
+    statusClass =
+      "status-Out";
+
+  }
+
+
+  const items =
+    (order.items || [])
+      .map(
+        item => `
+
+          <div class="order-item">
+
+            <div class="order-item-name">
+
+              ${esc(
+                item.product?.name ||
+                item.name ||
+                "Product"
+              )}
+
+              ×
+
+              ${
+                Number(
+                  item.quantity
+                ) || 0
+              }
+
+            </div>
+
+
+            <div class="order-item-price">
+
+              ₹${
+                Number(
+                  item.price
+                ) || 0
+              }
+
+              ×
+
+              ${
+                Number(
+                  item.quantity
+                ) || 0
+              }
+
+            </div>
+
+          </div>
+
+        `
+      )
+      .join("");
+
+
+  return `
+
+    <div
+      class="
+        order-card
+        ${isLive ? "live-order-card" : ""}
+      "
+    >
+
+      <div class="order-header">
+
+        <div>
+
+          <div class="order-id">
+
+            Order #${esc(
+              getOrderId(order)
+            )}
+
+          </div>
+
+
+          <div class="order-date">
+
+            ${date}
+
+          </div>
+
+        </div>
+
+
+        ${
+          isLive
+
+            ? `
+
+              <div>
+
+                <div class="live-status-label">
+
+                  Live Status
+
+                </div>
+
+
+                <div
+                  class="
+                    live-status-badge
+                    ${statusClass}
+                  "
+                >
+
+                  ${info.emoji}
+
+                  ${esc(
+                    info.title
+                  )}
+
+                </div>
+
+              </div>
+
+            `
+
+            : `
+
+              <div
+                class="
+                  order-status
+                  ${statusClass}
+                "
+              >
+
+                ${info.emoji}
+
+                ${esc(
+                  info.title
+                )}
+
+              </div>
+
+            `
+        }
+
+      </div>
+
+
+      ${
+        isLive
+
+          ? `
+
+            <div class="live-status-message">
+
+              ${info.emoji}
+
+              ${
+                normalizedStatus === "pending"
+
+                  ? "Your order has been received and is waiting for confirmation."
+
+                  : normalizedStatus === "confirmed"
+
+                    ? "Your order is confirmed and will be prepared shortly."
+
+                    : normalizedStatus === "preparing"
+
+                      ? "Your food is being freshly prepared."
+
+                      : normalizedStatus === "out for delivery"
+
+                        ? "Your order is on the way to you."
+
+                        : "Your order is being processed."
+              }
+
+            </div>
+
+          `
+
+          : ""
+      }
+
+
+      <div class="order-items">
+
+        ${
+          items ||
+
+          `
+            <div class="message">
+
+              No items found.
+
+            </div>
+          `
+        }
+
+      </div>
+
+
+      <div class="order-footer">
+
+        <div class="order-address">
+
+          📍
+
+          ${esc(
+            order.deliveryAddress ||
+            "Address unavailable"
+          )}
+
+        </div>
+
+
+        <div class="order-total">
+
+          ₹${
+            Number(
+              order.totalAmount
+            ) || 0
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
+   LOAD ORDERS
+========================================================= */
+
+async function loadOrders() {
+
+  if (!ordersContainer) {
+
+    return;
+
+  }
+
+
+  if (!userOrders.length) {
+
+    ordersContainer.innerHTML = `
+
+      <div class="message">
+
+        Loading orders...
+
+      </div>
+
+    `;
+
+  }
+
+
+  try {
+
+    const {
+      response,
+      data
+    } =
+      await apiRequest(
+        `${API_URL}/orders`,
+        {
+
+          method: "GET",
+
+          headers: headers()
+
+        }
+      );
+
+
+    if (!response.ok) {
+
+      ordersContainer.innerHTML = `
+
+        <div class="message">
+
+          Unable to load orders.
+
+          <br>
+
+          <small>
+
+            ${esc(
+              data.message ||
+              data.error ||
+              `Error ${response.status}`
+            )}
+
+          </small>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    renderOrders(
+      data.orders ||
+      data ||
+      []
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      error
+    );
+
+
+    if (!userOrders.length) {
+
+      ordersContainer.innerHTML = `
+
+        <div class="message">
+
+          Unable to connect to server.
+
+        </div>
+
+      `;
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   RENDER ORDERS
+========================================================= */
+
+function renderOrders(orders) {
+
+  userOrders =
+    Array.isArray(orders)
+      ? orders
+      : [];
+
+
+  const existingHistoryDropdown =
+    document.getElementById(
+      "pastOrdersDropdown"
+    );
+
+
+  const historyWasOpen =
+    existingHistoryDropdown
+      ? existingHistoryDropdown.open
+      : false;
+
+
+  processOrderTracking(
+    userOrders
+  );
+
+
+  const liveOrders =
+    userOrders
+      .filter(
+        order =>
+          isUserLive(
+            order.status
+          )
+      )
+      .sort(
+        (a, b) =>
+          new Date(
+            b.createdAt || 0
+          ) -
+          new Date(
+            a.createdAt || 0
+          )
+      );
+
+
+  const pastOrders =
+    userOrders
+      .filter(
+        order => {
+
+          const status =
+            normalizeOrderStatus(
+              order.status
+            );
+
+          return (
+            status === "delivered" ||
+            status === "cancelled" ||
+            status === "canceled"
+          );
+
+        }
+      )
+      .sort(
+        (a, b) =>
+          new Date(
+            b.createdAt || 0
+          ) -
+          new Date(
+            a.createdAt || 0
+          )
+      );
+
+
+  debug(
+    "LIVE ORDERS:",
+    liveOrders
+  );
+
+
+  debug(
+    "PAST ORDERS:",
+    pastOrders
+  );
+
+
+  updateFloatingTrackOrder(
+    liveOrders
+  );
+
+
+  if (!userOrders.length) {
+
+    clearOrderPolling();
+
+
+    ordersContainer.innerHTML = `
+
+      <div class="message">
+
+        You have not placed any orders yet.
+
+        <br>
+        <br>
+
+        <button
+          type="button"
+          class="home-menu-cta"
+          onclick="showView('menu')"
+        >
+
+          Order Something →
+
+        </button>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  let html = "";
+
+
+  /* =======================================================
+     LIVE ORDERS SECTION
+  ======================================================= */
+
+  html += `
+
+    <section class="live-orders-section">
+
+      <div class="live-orders-header">
+
+        <h2 class="live-orders-title">
+
+          <span
+            class="live-orders-title-dot">
+          </span>
+
+          Live Orders
+
+        </h2>
+
+
+        <span class="live-orders-count">
+
+          ${liveOrders.length}
+
+        </span>
+
+      </div>
+
+  `;
+
+
+  if (!liveOrders.length) {
+
+    html += `
+
+      <div class="message">
+
+        No live orders right now.
+
+        <br>
+        <br>
+
+        <button
+          type="button"
+          class="home-menu-cta"
+          onclick="showView('menu')"
+        >
+
+          Order Something →
+
+        </button>
+
+      </div>
+
+    `;
+
+  } else {
+
+    html +=
+      liveOrders
+        .map(
+          order =>
+            createUserOrderCard(
+              order,
+              true
+            )
+        )
+        .join("");
+
+  }
+
+
+  html += `
+
+    </section>
+
+  `;
+
+
+  /* =======================================================
+     ORDER HISTORY SECTION
+  ======================================================= */
+
+  html += `
+
+    <section class="past-orders-section">
+
+      <details
+        id="pastOrdersDropdown"
+        class="past-orders-dropdown"
+        ${historyWasOpen ? "open" : ""}
+      >
+
+        <summary class="past-orders-summary">
+
+          <div class="past-orders-summary-left">
+
+            <div class="past-orders-folder">
+
+              📁
+
+            </div>
+
+
+            <div>
+
+              <div class="past-orders-title">
+
+                Order History
+
+                <span class="past-orders-count">
+
+                  (${pastOrders.length})
+
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <span class="past-orders-arrow">
+
+            ▼
+
+          </span>
+
+        </summary>
+
+
+        <div class="past-orders-content">
+
+  `;
+
+
+  if (!pastOrders.length) {
+
+    html += `
+
+      <div class="message">
+
+        No past orders yet.
+
+      </div>
+
+    `;
+
+  } else {
+
+    html +=
+      pastOrders
+        .map(
+          order =>
+            createUserOrderCard(
+              order,
+              false
+            )
+        )
+        .join("");
+
+  }
+
+
+  html += `
+
+        </div>
+
+      </details>
+
+    </section>
+
+  `;
+
+
+  ordersContainer.innerHTML =
+    html;
+
+
+  if (
+    liveOrders.length
+  ) {
+
+    startOrderPolling();
+
+  } else {
+
+    clearOrderPolling();
+
+  }
+
+}
+
+
+/* =========================================================
+   PROCESS ORDER TRACKING
+   ROBUST DELIVERY / CANCELLATION HANDLING
+========================================================= */
+
+function processOrderTracking(orders) {
+
+  if (!Array.isArray(orders)) {
+
+    return;
+
+  }
+
+
+  const storedActiveOrderId =
+    localStorage.getItem(
+      ACTIVE_ORDER_KEY
+    );
+
+
+  const liveOrders =
+    orders
+      .filter(
+        order =>
+          isUserLive(
+            order.status
+          )
+      )
+      .sort(
+        (a, b) =>
+          new Date(
+            b.createdAt || 0
+          ) -
+          new Date(
+            a.createdAt || 0
+          )
+      );
+
+
+  /*
+    FIRST:
+    If there is a saved active order,
+    inspect THAT exact order before
+    switching to another live order.
+
+    This is important when admin changes
+    the active order to Delivered.
+  */
+
+  let trackedOrder =
+    storedActiveOrderId
+      ? orders.find(
+          order =>
+            getOrderId(order) ===
+            String(
+              storedActiveOrderId
+            )
+        )
+      : null;
+
+
+  /* =======================================================
+     SAVED ORDER FOUND
+  ======================================================= */
+
+  if (trackedOrder) {
+
+    const trackedId =
+      getOrderId(
+        trackedOrder
+      );
+
+
+    const trackedStatus =
+      normalizeOrderStatus(
+        trackedOrder.status
+      );
+
+
+    /* =====================================================
+       DELIVERED
+    ===================================================== */
+
+    if (
+      trackedStatus ===
+      "delivered"
+    ) {
+
+      hideFloatingTrackOrder();
+
+
+      localStorage.removeItem(
+        ACTIVE_ORDER_KEY
+      );
+
+
+      const deliveredKey =
+        `${DELIVERED_NOTIFICATION_KEY}_${trackedId}`;
+
+
+      const alreadyNotified =
+        localStorage.getItem(
+          deliveredKey
+        );
+
+
+      if (
+        trackedId &&
+        alreadyNotified !== "shown"
+      ) {
+
+        localStorage.setItem(
+          deliveredKey,
+          "shown"
+        );
+
+
+        showOrderDeliveredToast();
+
+      }
+
+
+      previousLiveOrderId =
+        null;
+
+
+      previousLiveOrderStatus =
+        "delivered";
+
+
+      /*
+        If another live order exists,
+        automatically track the newest one.
+      */
+
+      if (liveOrders.length) {
+
+        const nextOrder =
+          liveOrders[0];
+
+
+        const nextId =
+          getOrderId(
+            nextOrder
+          );
+
+
+        if (nextId) {
+
+          localStorage.setItem(
+            ACTIVE_ORDER_KEY,
+            nextId
+          );
+
+        }
+
+
+        latestUserOrder =
+          nextOrder;
+
+
+        previousLiveOrderId =
+          nextId;
+
+
+        previousLiveOrderStatus =
+          normalizeOrderStatus(
+            nextOrder.status
+          );
+
+
+        updateFloatingTrackOrder(
+          liveOrders
+        );
+
+
+        startOrderPolling();
+
+      } else {
+
+        latestUserOrder =
+          null;
+
+        clearOrderPolling();
+
+      }
+
+
+      return;
+
+    }
+
+
+    /* =====================================================
+       CANCELLED
+    ===================================================== */
+
+    if (
+      trackedStatus === "cancelled" ||
+      trackedStatus === "canceled"
+    ) {
+
+      hideFloatingTrackOrder();
+
+
+      localStorage.removeItem(
+        ACTIVE_ORDER_KEY
+      );
+
+
+      previousLiveOrderId =
+        null;
+
+
+      previousLiveOrderStatus =
+        trackedStatus;
+
+
+      /*
+        No delivery toast for cancellation.
+      */
+
+      if (liveOrders.length) {
+
+        const nextOrder =
+          liveOrders[0];
+
+
+        const nextId =
+          getOrderId(
+            nextOrder
+          );
+
+
+        if (nextId) {
+
+          localStorage.setItem(
+            ACTIVE_ORDER_KEY,
+            nextId
+          );
+
+        }
+
+
+        latestUserOrder =
+          nextOrder;
+
+
+        updateFloatingTrackOrder(
+          liveOrders
+        );
+
+
+        startOrderPolling();
+
+      } else {
+
+        latestUserOrder =
+          null;
+
+        clearOrderPolling();
+
+      }
+
+
+      return;
+
+    }
+
+
+    /* =====================================================
+       STILL LIVE
+    ===================================================== */
+
+    if (
+      isUserLive(
+        trackedStatus
+      )
+    ) {
+
+      latestUserOrder =
+        trackedOrder;
+
+
+      if (trackedId) {
+
+        localStorage.setItem(
+          ACTIVE_ORDER_KEY,
+          trackedId
+        );
+
+      }
+
+
+      previousLiveOrderId =
+        trackedId;
+
+
+      previousLiveOrderStatus =
+        trackedStatus;
+
+
+      updateFloatingTrackOrder(
+        liveOrders
+      );
+
+
+      startOrderPolling();
+
+      return;
+
+    }
+
+  }
+
+
+  /* =======================================================
+     NO VALID SAVED ACTIVE ORDER
+     Pick newest live order.
+  ======================================================= */
+
+  const newestLiveOrder =
+    liveOrders[0] || null;
+
+
+  if (newestLiveOrder) {
+
+    const newId =
+      getOrderId(
+        newestLiveOrder
+      );
+
+
+    if (newId) {
+
+      localStorage.setItem(
+        ACTIVE_ORDER_KEY,
+        newId
+      );
+
+    }
+
+
+    latestUserOrder =
+      newestLiveOrder;
+
+
+    previousLiveOrderId =
+      newId;
+
+
+    previousLiveOrderStatus =
+      normalizeOrderStatus(
+        newestLiveOrder.status
+      );
+
+
+    updateFloatingTrackOrder(
+      liveOrders
+    );
+
+
+    startOrderPolling();
+
+    return;
+
+  }
+
+
+  /* =======================================================
+     NOTHING LIVE
+  ======================================================= */
+
+  latestUserOrder =
+    null;
+
+
+  hideFloatingTrackOrder();
+
+
+  clearOrderPolling();
+
+}
+
+
+/* =========================================================
+   FLOATING TRACK ORDER
+========================================================= */
+
+function updateFloatingTrackOrder(orders) {
+
+  const tracker =
+    document.getElementById(
+      "floatingTrackOrder"
+    );
+
+
+  const title =
+    document.getElementById(
+      "floatingTrackTitle"
+    );
+
+
+  const statusText =
+    document.getElementById(
+      "floatingTrackStatus"
+    );
+
+
+  if (!tracker) {
+
+    return;
+
+  }
+
+
+  const liveOrders =
+    Array.isArray(orders)
+      ? orders.filter(
+          order =>
+            isUserLive(
+              order.status
+            )
+        )
+      : [];
+
+
+  if (!liveOrders.length) {
+
+    hideFloatingTrackOrder();
+
+    latestUserOrder =
+      null;
+
+    return;
+
+  }
+
+
+  const activeOrderId =
+    localStorage.getItem(
+      ACTIVE_ORDER_KEY
+    );
+
+
+  let activeOrder =
+    activeOrderId
+      ? liveOrders.find(
+          order =>
+            getOrderId(order) ===
+            String(
+              activeOrderId
+            )
+        )
+      : null;
+
+
+  if (!activeOrder) {
+
+    activeOrder =
+      getLatestOrder(
+        liveOrders
+      );
+
+  }
+
+
+  if (!activeOrder) {
+
+    hideFloatingTrackOrder();
+
+    return;
+
+  }
+
+
+  latestUserOrder =
+    activeOrder;
+
+
+  const orderId =
+    getOrderId(
+      activeOrder
+    );
+
+
+  const status =
+    activeOrder.status ||
+    "Pending";
+
+
+  const info =
+    getOrderStatusInfo(
+      status
+    );
+
+
+  if (title) {
+
+    title.textContent =
+      orderId
+        ? `Order #${orderId.slice(-8)}`
+        : "Order in Progress";
+
+  }
+
+
+  if (statusText) {
+
+    statusText.textContent =
+      `${info.emoji} ${info.title}`;
+
+  }
+
+
+  tracker.classList.add(
+    "visible"
+  );
+
+
+  if (orderId) {
+
+    localStorage.setItem(
+      ACTIVE_ORDER_KEY,
+      orderId
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   HIDE FLOATING TRACKER
+========================================================= */
+
+function hideFloatingTrackOrder() {
+
+  const tracker =
+    document.getElementById(
+      "floatingTrackOrder"
+    );
+
+
+  if (tracker) {
+
+    tracker.classList.remove(
+      "visible"
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   OPEN TRACK ORDERS
+========================================================= */
+
+function openTrackOrders() {
+
+  if (!token) {
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  showView(
+    "orders"
+  );
+
+}
+
+
+/* =========================================================
+   USER MANUAL REFRESH
+========================================================= */
+
+async function refreshUserOrders() {
+
+  const button =
+    document.getElementById(
+      "userRefreshOrdersButton"
+    );
+
+
+  if (!button) {
+
+    return;
+
+  }
+
+
+  if (button.disabled) {
+
+    return;
+
+  }
+
+
+  button.disabled = true;
+
+
+  button.textContent =
+    "⏳ Refreshing...";
+
+
+  try {
+
+    await loadOrders();
+
+  } finally {
+
+    button.disabled = false;
+
+    button.textContent =
+      "🔄 Refresh Orders";
+
+  }
+
+}
+
+
+/* =========================================================
+   ORDER POLLING
+========================================================= */
+
+function startOrderPolling() {
+
+  if (userOrderPollingInterval) {
+
+    return;
+
+  }
+
+
+  debug(
+    "Starting order polling..."
+  );
+
+
+  userOrderPollingInterval =
+    setInterval(
+      async () => {
+
+        if (!token) {
+
+          clearOrderPolling();
+
+          return;
+
+        }
+
+
+        try {
+
+          const {
+            response,
+            data
+          } =
+            await apiRequest(
+              `${API_URL}/orders`,
+              {
+
+                method: "GET",
+
+                headers: headers()
+
+              }
+            );
+
+
+          if (!response.ok) {
+
+            return;
+
+          }
+
+
+          const orders =
+            data.orders ||
+            data ||
+            [];
+
+
+          renderOrders(
+            Array.isArray(orders)
+              ? orders
+              : []
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "ORDER POLLING ERROR:",
+            error
+          );
+
+        }
+
+      },
+
+      5000
+
+    );
+
+}
+
+
+/* =========================================================
+   CLEAR ORDER POLLING
+========================================================= */
+
+function clearOrderPolling() {
+
+  if (
+    userOrderPollingInterval
+  ) {
+
+    clearInterval(
+      userOrderPollingInterval
+    );
+
+
+    userOrderPollingInterval =
+      null;
+
+
+    debug(
+      "Order polling stopped."
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   ORDER DELIVERED TOAST
+========================================================= */
+
+function showOrderDeliveredToast() {
+
+  const toast =
+    document.getElementById(
+      "orderSuccessToast"
+    );
+
+
+  if (!toast) {
+
+    return;
+
+  }
+
+
+  if (successToastTimer) {
+
+    clearTimeout(
+      successToastTimer
+    );
+
+
+    successToastTimer =
+      null;
+
+  }
+
+
+  toast.classList.remove(
+    "show"
+  );
+
+
+  void toast.offsetWidth;
+
+
+  toast.classList.add(
+    "show"
+  );
+
+
+  successToastTimer =
+    setTimeout(
+      () => {
+
+        toast.classList.remove(
+          "show"
+        );
+
+
+        successToastTimer =
+          null;
+
+      },
+
+      1800
+
+    );
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+function setupHero(products) {
+
+  const available =
+    products.filter(
+      product =>
+        product.isAvailable !== false &&
+        product.available !== false
+    );
+
+
+  if (!available.length) {
+
+    renderHeroFallback();
+
+    return;
+
+  }
+
+
+  heroProducts =
+    available.slice(
+      0,
+      7
+    );
+
+
+  heroIndex = 0;
+
+
+  renderHero();
+
+
+  startHero();
+
+}
+
+
+function renderHeroFallback() {
+
+  const slides =
+    document.getElementById(
+      "heroSlides"
+    );
+
+
+  const dots =
+    document.getElementById(
+      "heroDots"
+    );
+
+
+  const prev =
+    document.getElementById(
+      "heroPrev"
+    );
+
+
+  const next =
+    document.getElementById(
+      "heroNext"
+    );
+
+
+  if (slides) {
+
+    slides.innerHTML = `
+
+      <div class="hero-empty">
+
+        <div>
+
+          <h2>
+
+            Welcome to Meeru Fast Food 🍔
+
+          </h2>
+
+
+          <p>
+
+            Fresh food. Fast delivery. Big cravings.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+
+  if (dots) {
+
+    dots.innerHTML = "";
+
+  }
+
+
+  if (prev) {
+
+    prev.style.display =
+      "none";
+
+  }
+
+
+  if (next) {
+
+    next.style.display =
+      "none";
+
+  }
+
+}
+
+
+function renderHero() {
+
+  const slides =
+    document.getElementById(
+      "heroSlides"
+    );
+
+
+  if (!slides) {
+
+    return;
+
+  }
+
+
+  slides.innerHTML =
+    heroProducts
+      .map(
+        (
+          product,
+          index
+        ) => {
+
+          const id =
+            String(
+              product._id ||
+              product.id ||
+              ""
+            );
+
+
+          return `
+
+            <article
+              class="
+                hero-slide
+                ${
+                  index === 0
+                    ? "active"
+                    : ""
+                }
+              "
+            >
+
+              <img
+                class="hero-bg"
+                src="${img(product.image)}"
+                alt="${esc(product.name)}"
+                onerror="
+                  this.onerror=null;
+                  this.src='https://via.placeholder.com/1600x1000?text=Meeru+Fast+Food'
+                "
+              >
+
+
+              <div class="hero-overlay"></div>
+
+
+              <div class="hero-content">
+
+                <div class="hero-copy">
+
+                  <span class="hero-kicker">
+
+                    ${
+                      index === 0
+                        ? "Meeru Special"
+                        : "Freshly Prepared"
+                    }
+
+                  </span>
+
+
+                  <h1>
+
+                    ${esc(
+                      product.name
+                    )}
+
+                  </h1>
+
+
+                  <p>
+
+                    ${esc(
+                      product.description ||
+                      product.desc ||
+                      "Delicious vegetarian food, freshly prepared just for you."
+                    )}
+
+                  </p>
+
+
+                  <div class="hero-meta">
+
+                    <span class="hero-price">
+
+                      ₹${
+                        Number(
+                          product.price
+                        ) || 0
+                      }
+
+                    </span>
+
+
+                    <button
+                      type="button"
+                      class="hero-cta"
+                      onclick="
+                        openProduct('${id}')
+                      "
+                    >
+
+                      Order Now →
+
+                    </button>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </article>
+
+          `;
+
+        }
+      )
+      .join("");
+
+
+  const dots =
+    document.getElementById(
+      "heroDots"
+    );
+
+
+  if (dots) {
+
+    dots.innerHTML =
+      heroProducts
+        .map(
+          (
+            _,
+            index
+          ) => `
+
+            <button
+              type="button"
+              class="
+                hero-dot
+                ${
+                  index === 0
+                    ? "active"
+                    : ""
+                }
+              "
+              onclick="
+                goHero(${index})
+              "
+              aria-label="Slide ${
+                index + 1
+              }"
+            ></button>
+
+          `
+        )
+        .join("");
+
+  }
+
+
+  const prev =
+    document.getElementById(
+      "heroPrev"
+    );
+
+
+  const next =
+    document.getElementById(
+      "heroNext"
+    );
+
+
+  if (prev) {
+
+    prev.style.display =
+      heroProducts.length > 1
+        ? "block"
+        : "none";
+
+  }
+
+
+  if (next) {
+
+    next.style.display =
+      heroProducts.length > 1
+        ? "block"
+        : "none";
+
+  }
+
+}
+
+
+function goHero(index) {
+
+  if (!heroProducts.length) {
+
+    return;
+
+  }
+
+
+  heroIndex =
+    (
+      index +
+      heroProducts.length
+    ) %
+    heroProducts.length;
+
+
+  document
+    .querySelectorAll(
+      ".hero-slide"
+    )
+    .forEach(
+      (
+        slide,
+        i
+      ) => {
+
+        slide.classList.toggle(
+          "active",
+          i === heroIndex
+        );
+
+      }
+    );
+
+
+  document
+    .querySelectorAll(
+      ".hero-dot"
+    )
+    .forEach(
+      (
+        dot,
+        i
+      ) => {
+
+        dot.classList.toggle(
+          "active",
+          i === heroIndex
+        );
+
+      }
+    );
+
+}
+
+
+function changeHero(delta) {
+
+  goHero(
+    heroIndex + delta
+  );
+
+
+  restartHero();
+
+}
+
+
+function startHero() {
+
+  clearInterval(
+    heroTimer
+  );
+
+
+  if (
+    heroProducts.length > 1
+  ) {
+
+    heroTimer =
+      setInterval(
+        () => {
+
+          goHero(
+            heroIndex + 1
+          );
+
+        },
+
+        4000
+
+      );
+
+  }
+
+}
+
+
+function restartHero() {
+
+  startHero();
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+function start() {
+
+  debug(
+    "Starting app..."
+  );
+
+
+  if (!token) {
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  let user = null;
+
+
+  try {
+
+    user =
+      JSON.parse(
+        localStorage.getItem(
+          "user"
+        ) || "null"
+      );
+
+  } catch {
+
+    user = null;
+
+  }
+
+
+  if (!user) {
+
+    localStorage.removeItem(
+      "token"
+    );
+
+
+    localStorage.removeItem(
+      "user"
+    );
+
+
+    token = null;
+
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  if (
+    user.role === "admin"
+  ) {
+
+    location.href =
+      "admin.html";
+
+    return;
+
+  }
+
+
+  if (
+    user.role !== "user"
+  ) {
+
+    localStorage.removeItem(
+      "token"
+    );
+
+
+    localStorage.removeItem(
+      "user"
+    );
+
+
+    token = null;
+
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  showApp();
+
+}
+
+
+/* =========================================================
+   START APP
+========================================================= */
+
+start();
+
+</script>
+
+</body>
+</html>
